@@ -8,6 +8,13 @@ ul{
     padding: 0px;
 }
 
+@font-face {
+    font-family: "Brush";
+    src: url(../fonts/brush-script-mt-italic.ttf);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
 .navL{
     height: 80px;
     width: 98%;
