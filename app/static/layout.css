@@ -43,10 +43,9 @@ nav {
 }
 
 #navbar ul {
-    width: 90%;
+    width: 811px;
     padding-top: 0.6%;
-    margin-left: 18vw;
-    margin-right: 0!important;
+    margin: auto
 }
 
 nav a {
@@ -125,6 +124,12 @@ footer i:hover {
 }
 
 /* Responsividade_________________________________________________________________________________________________________________________ */
+@media (max-width: 856px){
+    #navbar .esquerda,#navbar .direita{
+        font-size: 26px
+    }
+}
+
 
 @media (max-width: 767px) {
     #logoeze2 {

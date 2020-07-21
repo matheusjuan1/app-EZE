@@ -29,7 +29,7 @@
     <nav id="navbarbg" class="navbar navbar-expand-md navbar-light bg-light border">
         <img id="logoeze2" src="../static/img/logo.png" alt="">
         <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-            id="buttonnav" data-target="#navbar" data-toggle="collapse" type="button">
+            id="buttonnav" data-target="#navbar" data-toggle="collapse" type="button" onclick="diminuir()">
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbar">
@@ -69,5 +69,13 @@
 </html>
 
 <script>
-    //   
+    function diminuir(){
+        navbarbg.style.backgroundImage = 'linear-gradient(180deg, red, black,black,black,black,black,black,black,black,black, black, black, black, red)'
+        buttonnav.setAttribute('onclick', 'aumentar()')
+    }
+
+    function aumentar(){
+        navbarbg.style.backgroundImage = 'linear-gradient(180deg, red, black, black, black, black, red)'
+        buttonnav.setAttribute('onclick', 'diminuir()')
+    }
 </script>
