@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
@@ -11,8 +11,7 @@
     <!-- documentation at http://getbootstrap.com/docs/4.1/, alternative themes at https://bootswatch.com/ -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- https://favicon.io/emoji-favicons/money-mouth-face/ -->
-    <link href="/static/favicon.ico" rel="icon">
+    <link rel="shortcut icon" href="../static/img/favicon.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/c8284bd1fb.js" crossorigin="anonymous"></script>
 
     <link href="/static/styles.css" rel="stylesheet">
@@ -22,70 +21,53 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-    <title></title>
+    <title>EZE party</title>
 
 </head>
 
 <body>
-
-    <div class="navL" id="navL">
-        <div class="containerL">
-            <ul class="listaL">
-                <li class="esquerda">Edições</li>
-                <li class="esquerda">Comprar</li>
-                <li><img src="../static/img/logo.png"></li>
-                <li class="direita">Promoter</li>
-                <li class="direita">Organizador</li>
-            </ul>
-            
-            <img src="../static/img/logo.png" class="logoResponse">
-            <i onclick="header()" id="abrir" class="fas fa-bars iconResponse"></i>
-            <i onclick="headerFec()" id="fechar" class="fas fa-bars iconresFec"></i>
-            <br><br><br>
-            <ul class="listaLResponse" id="lres">
-                <li class="esquerda">Edições</li>
-                <li class="esquerda">Comprar</li>
-                <li class="direita">Promoter</li>
-                <li class="direita">Organizador</li>
+    <nav id="navbarbg" class="navbar navbar-expand-md navbar-light bg-light border">
+        <img id="logoeze2" src="../static/img/logo.png" alt="">
+        <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            id="buttonnav" data-target="#navbar" data-toggle="collapse" type="button">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mr-auto mt-2">
+                <li class="nav-item esquerda"><a class="" href="#">Edições</a></li>
+                <li class="nav-item esquerda"><a href="#">Comprar</a></li>
+                <img id="logoeze" src="../static/img/logo.png">
+                <li class="nav-item direita"><a href="#">Promoter</a></li>
+                <li class="nav-item direita"><a href="#">Organizador</a></li>
             </ul>
         </div>
-    </div>
+    </nav>
 
-    {% if get_flashed_messages() %}
+
+    <!-- {% if get_flashed_messages() %}
     <div class="headerL">
         <div class="alert alert-primary border text-center" role="alert">
             {{ get_flashed_messages() | join(" ") }}
         </div>
     </div>
-    {% endif %}
+    {% endif %} -->
 
     <main class="container p-5">
         {% block main %}{% endblock %}
     </main>
 
+    <footer class="small text-center text-muted">
+        <img src="../static/img/logo.png" alt=""> <br>
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-youtube"></i> <br><br>
+        <p>Copyrigth &copy; EZE party.<br>
+            Todos os direitos reservados.</p>
+    </footer>
 </body>
 
 </html>
 
 <script>
-
-    function header(){
-        navL.style.transition = 'height 1s'
-        navL.style.height = '248px'
-        setTimeout(() => {
-            lres.style.display = 'block'; 
-        }, 900);
-        abrir.style.display = 'none'
-        fechar.style.display = 'block';
-        navL.style.backgroundImage = 'linear-gradient(180deg, red, black, black, black, black, black, black, black, black, black, black, black, black, black, black, black, black, black, red)'
-    }
-
-    function headerFec(){
-        lres.style.display = 'none';
-        fechar.style.display = 'none'
-        abrir.style.display = 'block';
-        navL.style.transition = 'height 1s'
-        navL.style.height = '80px'
-        navL.style.backgroundImage = 'linear-gradient(180deg, red, black, black, black, red)'
-    }
+    //   
 </script>
