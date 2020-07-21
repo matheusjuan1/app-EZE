@@ -1,0 +1,71 @@
+pagina principal: 
+    apresentação eze
+    
+    layout:
+        contagem regressiva
+        local
+        data certa
+        redes sociais
+    
+    opções com botoes:
+        comprar ingresso
+        promoter
+        organizador
+
+login:
+    username
+    email
+    senha
+
+promoter:
+    lista de suas vendas (pessoas que comprou, data que comprou, sexo, lote)
+    mensagens com metas dos promoters (quantidade de ingressos vendidos)
+    
+    botao para add pessoas:
+        nome da pessoa
+        sexo
+        lote
+
+    todos os nomes terao um botao ao lado para atualizar os dados:
+        nome da pessoa
+        sexo
+        lote
+
+    perfil do promoter no header (foto, nome, sair) opcional: promoter alterar foto
+    dash promoter | opcipnal
+
+organizador:
+    lista de vendas completa
+    botao deletar pessoa da lista
+
+    botao para add pessoas:
+        nome da pessoa
+        sexo
+        lote
+
+    todos os nomes terao um botao ao lado para atualizar os dados:
+        nome da pessoa
+        sexo
+        lote
+
+    perfil do organizador no header (foto, nome, sair) opcional: promoter alterar foto
+
+    adicionar promoter
+    excluir promoter
+    alterar a data da festa
+    alterar horario
+
+    numero de ingressos restantes:
+        if (numero de ingressos > permitdo){
+            desabilitar vendas
+        }
+
+    dash organizador | opcipnal
+
+comprar ingresso:
+    lote em cards
+    preço de cada lote
+    data de cada lote
+    desabilitar ou nao lotes
+
+    quando clicar no botao será direcionado para o contato dos promoters

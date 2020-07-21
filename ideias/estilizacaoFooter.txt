@@ -1,0 +1,15 @@
+<footer class="small text-center text-muted" style="background-color: black; height: 60px">
+        <ul class="listaL footerL">
+            <li class="esquerda"><i class="fab fa-instagram"></i></li>
+            <li class="esquerda"><i class="fab fa-facebook-f"></i></li>
+            <li><img src="logo.png"></li>
+            <li class="direita"><i class="fab fa-twitter"></i></li>
+            <li class="direita"><i class="fab fa-whatsapp"></i></li>
+        </ul>
+        <p>Copyright EZE Party</p>
+    </footer>
+
+    .footerL{
+        width: 90%;
+        margin: auto;
+    }
