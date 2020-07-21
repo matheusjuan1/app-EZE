@@ -1,0 +1,115 @@
+*{
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.paiIndex{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: black;
+    position: relative;
+    box-shadow: 0px 0px 50px 0px red;
+}
+
+.video{
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: opacity(0.7);
+}
+
+.containerIndex{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center
+}
+
+.imgLogo{
+    margin-top: 10%;
+    height: 49%;
+    filter: drop-shadow(0px 0px 15px red);
+    animation: sombra 5s linear infinite;  
+}
+
+@keyframes sombra{
+    0%{
+        filter: drop-shadow(0px 0px 0px red);
+    }
+    50%{
+        filter: drop-shadow(0px 0px 15px red);
+    }
+    100%{
+        filter: drop-shadow(0px 0px 0px red);
+    }
+}
+
+.btnIndex{
+    position: relative;
+    background-color: rgba(255, 0, 0, 0.7);
+    border: 1px solid #232323;
+    width: 12%;
+    margin-top: 2%
+}
+
+.btn-danger:not(:disabled):not(.disabled).active, .btn-danger:not(:disabled):not(.disabled):active, .show>.btn-danger.dropdown-toggle {
+    color: #fff;
+    background-color: red;
+    border-color: red;
+}
+
+.btn-danger:hover {
+    color: #fff;
+    background-color: red;
+    border-color: red;
+    filter: drop-shadow(0px 0px 5px red)
+}
+
+.btnIndex:active{
+    filter: drop-shadow(0px 0px 15px red)
+}
+
+
+/* ____________________________________________________________________________________________________________________________________ */
+
+
+.avisosIndex{
+    min-height: 100vh;
+    width: 100%;
+    background-color: black
+}
+
+.containerAvisos{
+    height: 100%;
+    width: 90%;
+    margin: auto;
+    padding-top: 5%;
+}
+
+.contagem{
+    height: 20vh;
+    width: 100%;
+    border: 2px solid red;
+}
+
+.flayer{
+    height: 70vh;
+    width: 100%;
+    margin-top: 2.5%;
+    border: 2px solid red;
+}
+
+.local{
+
+}
+
+.localizacao{
+
+}
+
+.etinerario{
+
+}
