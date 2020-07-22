@@ -61,6 +61,9 @@ def login_organizador():
 def login_prom():
     return render_template("loginprom.html")     
 
+@app.route("/comprar")
+def comprar():
+    return render_template("comprar.html")
 
 # @app.route("/login", methods=["GET", "POST"])
 # def login():
