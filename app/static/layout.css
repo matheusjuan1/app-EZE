@@ -7,6 +7,18 @@ body {
     display: block;
 }
 
+::-webkit-scrollbar{
+    width: 7px
+}
+::-webkit-scrollbar-track{
+    background-color: #232323;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgba(255, 0, 0, 0.7);
+    border-radius: 50px;
+}
+
+
 ul {
     border: 0px;
     margin: 0px;
@@ -32,6 +44,7 @@ nav {
     border-bottom-right-radius: 45px;
     color: white;
     transition: 0.5s;
+    border: 1px solid black!important;
 }
 
 #buttonnav {

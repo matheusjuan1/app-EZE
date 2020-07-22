@@ -16,17 +16,6 @@ body{
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
-::-webkit-scrollbar{
-    width: 7px
-}
-::-webkit-scrollbar-track{
-    background-color: black;
-}
-::-webkit-scrollbar-thumb{
-    background-color: rgba(255, 0, 0, 0.7);
-    border-radius: 50px;
-}
-
 
 .paiIndex{
     height: 100vh;
@@ -76,7 +65,8 @@ body{
     background-color: rgba(255, 0, 0, 0.7);
     border: 1px solid #232323;
     width: 12%;
-    margin-top: 2%
+    margin-top: 2%;
+    font-family: "Poppins", sans-serif;
 }
 
 .btn-danger:not(:disabled):not(.disabled).active, .btn-danger:not(:disabled):not(.disabled):active, .show>.btn-danger.dropdown-toggle {
@@ -229,7 +219,7 @@ body{
 }
 
 .flayer:hover{
-    transform: scale(1.2);
+    transform: scale(1.06);
 }
 
 .videoAvisos{
