@@ -4,6 +4,15 @@
     padding: 0;
 }
 
+@font-face {
+    font-family: "Brush";
+    src: url(../fonts/brush-script-mt-italic.ttf);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+
 .paiIndex{
     height: 100vh;
     width: 100%;
@@ -83,33 +92,180 @@
 }
 
 .containerAvisos{
+    /* font-family: "Brush"; */
     height: 100%;
     width: 90%;
     margin: auto;
-    padding-top: 5%;
+    padding-top: 8%;
+    opacity: 0;
+    transition: all 1s;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.paiContagem{
+    height: 70vh;
+    width: 45%;
+    margin-right: 1%;
+    margin-left: 2%;
 }
 
 .contagem{
     height: 20vh;
     width: 100%;
-    border: 2px solid red;
+    font-size: 43px;
+    color: white;
+    filter: drop-shadow(4px 8px 7px red);
+    padding-left: 20px;
+    font-family: sans-serif;
+    font-weight: 900;
+}
+
+.contagem span{
+    font-size: 25px;
+    margin-right: 3%;
+    font-family: sans-serif;
+    font-weight: 100;
+}
+.contagem b{
+    font-size: 43px;
+    margin-right: 3%;
+    font-family: sans-serif;
+    font-weight: 100;
+}
+
+.contagem::before{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    content: '';
+    background-color: red;
+    filter: blur(2px);
+    box-shadow: 0px 0px 14px 6px red;
+    border-radius: 50%;
+    margin-left: -20px;
+    animation: girar1 2s linear infinite;
+}
+
+@keyframes girar1{
+    0%{
+        margin-left: -38px;
+        margin-top: 0px
+    }
+    50%{
+        margin-left: 478px;
+        margin-top: 0px
+    }
+    100%{
+        margin-left: -38px;
+        margin-top: 0px
+    }
+}
+
+
+.contagem::after {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    content: '';
+    background-color: red;
+    filter: blur(2px);
+    box-shadow: 0px 0px 14px 6px red;
+    border-radius: 50%;
+    margin-left: -10px;
+    margin-top: 72px;
+    animation: girar2 2s linear infinite;
+}
+
+@keyframes girar2{
+    0%{
+        margin-left: -10px;
+    }
+    50%{
+        margin-left: -515px;    
+    }
+    100%{
+        margin-left: -10px;
+    }
+}
+
+.paiContagem img{
+    height: 42%;
+    margin-top: 4%;
+}
+
+.btnAvisos{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 6%;
 }
 
 .flayer{
     height: 70vh;
+    width: 50%;
+    box-shadow: 0px 0px 7px 3px red;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.flayer:hover{
+    transform: scale(1.2);
+}
+
+.videoAvisos{
+    height: 100%;
     width: 100%;
-    margin-top: 2.5%;
-    border: 2px solid red;
+    object-fit: cover;
+    border-radius: 10px
 }
 
 .local{
-
+    height: 100vh;
+    width: 100%;
+    margin-top: 8%;
+    display: flex;
+    flex-wrap: wrap
 }
+
 
 .localizacao{
-
+    height: 80%;
+    width: 50%;
+}
+.loc{
+    height: 60%;
+    width: 100%;
+    border-radius: 10px;
+    border-bottom: 2px solid red;
+    overflow: hidden;
 }
 
-.etinerario{
+.localizacao p{
+    font-size: 25px;
+    text-align: center;
+    color: white;
+    border-bottom: 2px solid red;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+}
 
+.itinerario{
+    height: 60%;
+    width: 45%;
+    margin-left: 5%;
+}
+
+.table-dark {
+    color: #fff;
+    background-color: black;
+}
+
+.table-dark a{
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.table-dark a:hover{
+    color: red
 }

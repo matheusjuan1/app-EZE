@@ -1,46 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/index.css">
-    <title>Document</title>
-</head>
-
-<body>
-    <!-- apagar a formatação do ctrl + ! e colocar o {% block main %}{% endblock %} para abrir no server do flask -->
-
-    <div class="paiIndex" id="pai">
-        <video id="video" muted autoplay src="../static/img/const.mp4" loop class="video"></video>
-        <div class="containerIndex">
-            <img src="../static/img/logo.png" id="imgLogo" class="imgLogo"><br>
-            <button type="button" class="btn btn-danger btnIndex">Danger</button>
-            <button type="button" class="btn btn-danger btnIndex">Danger</button>
-            <button type="button" class="btn btn-danger btnIndex">Danger</button>
-            <button type="button" class="btn btn-danger btnIndex">Danger</button>
-        </div>
+{% block main %}
+<div class="paiIndex" id="pai">
+    <video id="video" muted autoplay src="../static/img/index/const.mp4" loop class="video"></video>
+    <div class="containerIndex">
+        <img src="../static/img/logo.png" id="imgLogo" class="imgLogo"><br>
+        <button type="button" class="btn btn-danger btnIndex">Danger</button>
+        <button type="button" class="btn btn-danger btnIndex">Danger</button>
+        <button type="button" class="btn btn-danger btnIndex">Danger</button>
+        <button type="button" class="btn btn-danger btnIndex">Danger</button>
     </div>
-    <div class="avisosIndex" id="avisos">
-        <div class="containerAvisos">
+</div>
+<div class="avisosIndex" id="avisos">
+    <div class="containerAvisos" id="containerAvisos">
+        <div class="paiContagem">
             <div class="contagem" id="contagem"></div>
-            <div class="flayer"></div>
-            <div class="local">
-                <div class="localizacao"></div>
-                <div class="etinerario"></div>
+            <img src="../static/img/index/eze30.png" alt="">
+            <button type="button" class="btn btn-danger btnIndex btnAvisos">Comprar</button>
+        </div>
+        <div class="flayer">
+            <video id="video" muted autoplay src="../static/img/index/videoEZE.mp4" loop class="videoAvisos"></video>
+        </div>
+        <div class="local">
+            <div class="localizacao">
+                <div class="loc">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3653.629437039452!2d-46.74187448538066!3d-23.689206372210165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce51f01920cfa7%3A0x17ccb733e2882680!2sR.%20Paulo%20S%C3%A9rgio%20Cost%C3%A1bile%20%7C%20Cebola%2C%20450%20-%20Jardim%20Sao%20Francisco(Zona%20Sul)%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004918-285!5e0!3m2!1spt-BR!2sbr!4v1595374213757!5m2!1spt-BR!2sbr"
+                        width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""
+                        aria-hidden="false" tabindex="0"></iframe>
+                </div>
+                <p>
+                    450 R. Paulo Sérgio Costábile | Cebola, São Paulo<br>
+                    -- Próximo ao parque Guarapiranga --
+                </p>
+            </div>
+            <div class="itinerario">
+                <table class="table table-hover table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Itinerário</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td><a href="http://www.sptrans.com.br/itinerarios/linha/?cdp=167382">7004-10 - TERM. JD.
+                                    JACIRA / EST. STO. AMARO/GUIDO CALOI</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td><a href="http://www.sptrans.com.br/itinerarios/linha/?cdp=166149">6008-10 - JD. PLANALTO
+                                    / TERM. STO. AMARO</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td><a href="http://www.sptrans.com.br/itinerarios/linha/?cdp=166255">6258-10 - JD. SÃO
+                                    FRANCISCO / TERM. STO. AMARO </a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td><a href="http://www.sptrans.com.br/itinerarios/linha/?cdp=166170">6028-10 - RIVIERA /
+                                    TERM. STO. AMARO </a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td><a href="http://www.sptrans.com.br/itinerarios/linha/?cdp=167383">7016-10 - JD. ÂNGELA /
+                                    TERM. STO. AMARO </a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td><a href="http://www.sptrans.com.br/itinerarios/linha/?cdp=167539">7023-10 - JD. NAKAMURA
+                                    / TERM. STO. AMARO </a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>
 
-
-
-
-</body>
-
-</html>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
@@ -50,3 +87,45 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
+
+<script>
+    function horario() {
+        let dataEvent = new Date(2020 - 11 - 25)
+        let atual = new Date()
+        let sub = dataEvent - atual
+        contagem.innerHTML = `<b>Faltam</b> <br>${new Date(sub).getMonth()}<span>M</span> ${new Date(sub).getDate()}<span>D</span> ${new Date(sub).getHours()}<span>H</span> ${new Date(sub).getMinutes()}<span>M</span> ${new Date(sub).getSeconds()}<span>S</span>`
+    }
+
+    horario();
+    setInterval(horario, 1000)
+
+        (function () {
+            var $subir = $('#containerAvisos'),
+                offset = $(window).height() * 3 / 4;
+
+            function animeScroll() {
+                var documentTop = $(document).scrollTop();
+
+                $subir.each(function () {
+                    var itemTop = $(this).offset().top;
+
+                    if (documentTop > itemTop - offset) {
+                        containerAvisos.style.opacity = '1';
+                        containerAvisos.style.paddingTop = '5%';
+                    }
+                    else {
+                        containerAvisos.style.opacity = '0';
+                        containerAvisos.style.paddingTop = '8%';
+                    }
+                });
+            }
+
+            animeScroll();
+            $(document).scroll(function () {
+                animeScroll();
+            });
+        }());
+
+</script>
+
+{% endblock %}

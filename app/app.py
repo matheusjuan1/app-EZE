@@ -46,7 +46,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 # @login_required
 def index():
     """Show portfolio of stocks"""
-    return render_template("layout.html")
+    return render_template("index.html")
 
 
 # @app.route("/login", methods=["GET", "POST"])
