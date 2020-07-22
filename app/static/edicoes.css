@@ -12,6 +12,23 @@
     cursor: pointer;
 }
 
+.one:hover {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: purple;
+    text-shadow: 0px 0px 0.3em purple;
+}
+
+.two:hover {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(4, 199, 4);
+    text-shadow: 0px 0px 0.3em rgb(4, 199, 4);
+}
+
+.three:hover {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: red;
+    text-shadow: 0px 0px 0.3em red;
+}
 .edicao {
     margin-bottom: 10px;
     display: flex;
@@ -22,11 +39,6 @@
     margin-left: 5%;
 }
 
-.ano:hover {
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: red;
-    text-shadow: 0px 0px 0.3em red;
-}
 
 .flyer {
     background-color: white;
@@ -46,7 +58,7 @@
     background-color: white;
     padding: 5px;
     border-radius: 30px;
-    width: 481px;
+    width: 490px;
 }
 
 .edicoes img {
@@ -101,8 +113,8 @@
 
 .textoedicoes:hover {
     -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: red;
-    text-shadow: 0px 0px 0.3em red;
+    -webkit-text-stroke-color: white;
+    text-shadow: 0px 0px 0.3em white;
 }
 
 .seboso {
