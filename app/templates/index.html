@@ -1,3 +1,9 @@
+{% block head %}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/index.css">
+{% endblock %}
+
 {% block main %}
 <div class="paiIndex" id="pai">
     <video id="video" muted autoplay src="../static/img/index/const.mp4" loop class="video"></video>
@@ -97,21 +103,24 @@
     }
 
     horario();
-    setInterval(horario, 1000)
+    setInterval(() => {
+       horario() 
+    }, 1000);
 
         (function () {
             var $subir = $('#containerAvisos'),
-                offset = $(window).height() * 3 / 4;
+                offset2 = $(window).height() * 1/2;
 
-            function animeScroll() {
+            function animeScroll2() {
                 var documentTop = $(document).scrollTop();
 
                 $subir.each(function () {
-                    var itemTop = $(this).offset().top;
-
-                    if (documentTop > itemTop - offset) {
+                    var itemTop1 = $(this).offset().top;
+                    
+                    if (documentTop > (offset2 - itemTop1) - 200) {
                         containerAvisos.style.opacity = '1';
                         containerAvisos.style.paddingTop = '5%';
+                        // console.log(offset2)
                     }
                     else {
                         containerAvisos.style.opacity = '0';
@@ -120,9 +129,9 @@
                 });
             }
 
-            animeScroll();
+            animeScroll2();
             $(document).scroll(function () {
-                animeScroll();
+                animeScroll2();
             });
         }());
 
