@@ -1,5 +1,6 @@
 body {
-    background-color: black
+    background-color: black;
+    overflow-x: hidden;
 }
 
 ul {
@@ -63,8 +64,14 @@ nav img {
     display: none;
 }
 
+#logoeze:hover {
+    transform: scale(1.08);
+}
+
 #logoeze {
     display: block;
+    transition: 0.5s;
+    cursor: pointer;
 }
 
 #navbar a:hover {
@@ -103,6 +110,10 @@ nav img {
     border: 1px solid black!important;
 }
 
+footer {
+    padding-bottom: 25px;
+}
+
 footer img {
     height: 85px;
 }
@@ -116,6 +127,10 @@ footer i {
     margin-top: 20px;
     font-size: 35px;
     transition: 0.3s;
+}
+
+.mainp {
+    margin-top: 70px;
 }
 
 footer i:hover {
@@ -136,7 +151,13 @@ footer i:hover {
         display: block;
         padding-top: 0.6%;
         margin-top: 0.6%;
+        transition: 0.5s;
+        cursor: pointer;
     }
+    #logoeze2:hover {
+        transform: scale(1.08);
+    }
+    
     #logoeze {
         display: none;
     }

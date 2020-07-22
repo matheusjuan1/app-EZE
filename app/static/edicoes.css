@@ -1,0 +1,116 @@
+.ano {
+    font-family: "Brush";
+    font-size: 200px;
+    font-weight: 500;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgba(255, 255, 255, 0.5);
+    color: transparent;
+    margin-bottom: -60px;
+    margin-left: 40px;
+    letter-spacing: .25px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.edicao {
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.edicoes {
+    float: right;
+    margin-left: 5%;
+}
+
+.ano:hover {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: red;
+    text-shadow: 0px 0px 0.3em red;
+}
+
+.flyer {
+    background-color: white;
+    padding: 5px;
+    border-radius: 30px;
+    width: 490px;
+}
+
+.edicao2 {
+    background-color: white;
+    padding: 5px;
+    border-radius: 30px;
+    width: 481px;
+}
+
+.edicao3 {
+    background-color: white;
+    padding: 5px;
+    border-radius: 30px;
+    width: 481px;
+}
+
+.edicoes img {
+    border-radius: 25px;
+    height: 450px;
+}
+
+.edicao3 img {
+    height: 421px;
+}
+
+.texto {
+    background-color: white;
+    float: right;
+    border-radius: 25px;
+    padding: 20px 20px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.texto2 {
+    background-color: white;
+    float: right;
+    border-radius: 25px;
+    padding: 20px 20px;
+    margin-top: 110px;
+}
+
+.texto2 img {
+    height: 80px;
+    margin-left: 10VW;
+    margin-right: 10VW;
+}
+
+.texto img {
+    height: 80px;
+    margin-left: 10VW;
+    margin-right: 10VW;
+}
+
+.textoedicoes {
+    font-family: "Brush";
+    font-size: 100px;
+    font-weight: bold;
+    color: transparent;
+    margin-bottom: -10px;
+    margin-left: 85px;
+    cursor: pointer;
+    transition: 0.5s;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgba(255, 255, 255, 0.5);
+}
+
+.textoedicoes:hover {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: red;
+    text-shadow: 0px 0px 0.3em red;
+}
+
+.seboso {
+    float: left;
+    width: 500px;
+    margin-top: 72px;
+}
+
+.edicao3 img:hover {
+    opacity: 0.3;
+}
