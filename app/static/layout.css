@@ -60,6 +60,7 @@ nav a {
     text-decoration: none;
     color: white;
     transition: 0.3s;
+    font-family: "Poppins", sans-serif;
 }
 
 nav img {
@@ -91,14 +92,14 @@ nav img {
     float: left;
     margin-right: 5%;
     margin-top: 0.6%;
-    font-size: 30px;
+    font-size: 26px;
 }
 
 #navbar .direita {
     float: right;
     margin-left: 5%;
     margin-top: 0.6%;
-    font-size: 30px;
+    font-size: 26px;
 }
 
 .headerL {
@@ -116,6 +117,10 @@ nav img {
     border: 1px solid black!important;
 }
 
+main {
+    text-align: center;
+}
+
 footer {
     padding-bottom: 25px;
 }
@@ -126,6 +131,7 @@ footer img {
 
 footer p {
     font-size: 16px;
+    font-weight: 600;
 }
 
 footer i {
