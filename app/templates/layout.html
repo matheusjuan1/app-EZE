@@ -16,6 +16,7 @@
 
     <link href="/static/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/layout.css">
+    {% block head %}{% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -34,9 +35,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto mt-2">
-                <li class="nav-item esquerda"><a class="" href="#">Edições</a></li>
+                <li class="nav-item esquerda"><a href="/edicoes">Edições</a></li>
                 <li class="nav-item esquerda"><a href="#">Comprar</a></li>
-                <img id="logoeze" src="../static/img/logo.png">
+                <a href="/"><img id="logoeze" src="../static/img/logo.png"></a>
                 <li class="nav-item direita"><a href="#">Promoter</a></li>
                 <li class="nav-item direita"><a href="#">Organizador</a></li>
             </ul>
@@ -53,7 +54,9 @@
     {% endif %} -->
 
     <main class="container p-5">
-        {% block main %}{% endblock %}
+        <div class="mainp">
+            {% block main %}{% endblock %}
+        </div>
     </main>
 
     <footer class="small text-center text-muted">
@@ -69,12 +72,12 @@
 </html>
 
 <script>
-    function diminuir(){
+    function diminuir() {
         navbarbg.style.backgroundImage = 'linear-gradient(180deg, red, black,black,black,black,black,black,black,black,black, black, black, black, red)'
         buttonnav.setAttribute('onclick', 'aumentar()')
     }
 
-    function aumentar(){
+    function aumentar() {
         navbarbg.style.backgroundImage = 'linear-gradient(180deg, red, black, black, black, black, red)'
         buttonnav.setAttribute('onclick', 'diminuir()')
     }

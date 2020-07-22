@@ -8,7 +8,7 @@ from werkzeug.exceptions import default_exceptions, HTTPException, InternalServe
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
 
-# from helpers import apology, login_required, lookup, usd
+from helpers import apology, login_required
 
 # Configure application
 app = Flask(__name__)
@@ -24,8 +24,6 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-# Custom filter
-# app.jinja_env.filters["usd"] = usd
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_FILE_DIR"] = mkdtemp()
@@ -46,7 +44,15 @@ app.config["SESSION_TYPE"] = "filesystem"
 # @login_required
 def index():
     """Show portfolio of stocks"""
+<<<<<<< HEAD
     return render_template("index.html")
+=======
+    return redirect("index.html")
+
+@app.route("/edicoes")
+def edicoes():
+    return render_template("edicoes.html")    
+>>>>>>> e0e6795f3ba6b7bae08294b42acfda2a6431be34
 
 
 # @app.route("/login", methods=["GET", "POST"])
