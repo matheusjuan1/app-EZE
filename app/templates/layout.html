@@ -62,7 +62,7 @@
     </main>
 
     {% endblock %}
-    <footer class="small text-center text-muted">
+    <footer class="small text-center text-muted Footerindex">
         <img src="../static/img/logo.png" alt=""> <br>
         <i class="fab fa-facebook"></i>
         <i class="fab fa-instagram"></i>
@@ -74,13 +74,15 @@
 
 </html>
 
-<script>
+<script>100 - 265
     function diminuir() {
+        navbarbg.style.height = '265px'
         navbarbg.style.backgroundImage = 'linear-gradient(180deg, red, black, black, black,black,black,black,black,black,black,black,black, black, black, black, red)'
         buttonnav.setAttribute('onclick', 'aumentar()')
     }
 
     function aumentar() {
+        navbarbg.style.height = '100px'
         navbarbg.style.backgroundImage = 'linear-gradient(180deg, red, black, black, black, black, black, black, black, red)'
         buttonnav.setAttribute('onclick', 'diminuir()')
     }

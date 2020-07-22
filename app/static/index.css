@@ -289,3 +289,103 @@ body{
 .table-dark a:hover{
     color: red
 }
+
+footer{
+    margin-top: 5%
+}
+/* responsividade___________________________________________________________________________________________________________________________ */
+
+@media (max-width: 1241px){
+    .paiContagem{
+        width: 60%
+    }
+    .flayer{
+        width: 35%;
+    }
+}
+@media (max-width: 931px){
+    .paiContagem img {
+        display: none;
+    }
+    .paiContagem{
+        width: 100%;
+        text-align: center;
+        height: 44vh;
+    }
+
+    .btnAvisos{
+        margin-left: 0;
+    }
+
+    .btnIndex{
+        width: 17%
+    }
+
+    .flayer {
+        width: 100%;
+        height: 35vh;
+    }
+
+    footer{
+        margin-top: 5%
+    }
+
+    .localizacao p {
+        font-size: 17px;
+    }
+
+    .itinerario{
+        overflow-y: scroll
+    }
+
+    .contagem::before{
+        margin-left: -206px
+    }
+    
+    @keyframes girar1{
+        0%{
+            margin-left: -206px;
+            margin-top: 0px
+        }
+        50%{
+            margin-left: 323px;
+            margin-top: 0px
+        }
+        100%{
+            margin-left: -206px;
+            margin-top: 0px
+        }
+    }
+
+    .contagem::after{
+        margin-left: -2px
+    }
+
+    @keyframes girar2{
+        0%{
+            margin-left: -2px;
+        }
+        50%{
+            margin-left: -550px;    
+        }
+        100%{
+            margin-left: -2px;
+        }
+    }
+}
+
+@media (max-width: 710px){
+    .localizacao p {
+        display: none
+    }
+}
+@media (max-width: 580px){
+    .imgLogo {
+        margin-top: 28%;
+        height: 35%;    
+    }
+
+    .btnIndex a{
+        font-size: 13px;
+    }
+}
