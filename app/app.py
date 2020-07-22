@@ -42,11 +42,6 @@ app.config["SESSION_TYPE"] = "filesystem"
 
 @app.route("/")
 def index():
-<<<<<<< HEAD
-    # """Show portfolio of stocks"""
-# <<<<<<< HEAD
-=======
->>>>>>> afc7388c8050da995e94127a18444f9dd887487d
     return render_template("index.html")
 
 @app.route("/edicoes")
