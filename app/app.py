@@ -1,7 +1,7 @@
 import os
 
 import sqlite3
-from flask import Flask, flash, jsonify, redirect, render_template, request, session
+from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
 # from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
@@ -41,18 +41,20 @@ app.config["SESSION_TYPE"] = "filesystem"
 # usuarioAT = []
 
 @app.route("/")
-# @login_required
 def index():
-    """Show portfolio of stocks"""
-# <<<<<<< HEAD
     return render_template("index.html")
-# =======
-    return redirect("index.html")
 
 @app.route("/edicoes")
 def edicoes():
-    return render_template("edicoes.html")    
-# >>>>>>> e0e6795f3ba6b7bae08294b42acfda2a6431be34
+    return render_template("edicoes.html")
+
+@app.route("/organizador")
+def login_organizador():
+    return render_template("loginorg.html")    
+
+@app.route("/promoter")
+def login_prom():
+    return render_template("loginprom.html")     
 
 
 # @app.route("/login", methods=["GET", "POST"])
@@ -104,7 +106,6 @@ def edicoes():
 #     return redirect("/")
 
 def errorhandler(e):
-    """Handle error"""
     if not isinstance(e, HTTPException):
         e = InternalServerError()
     return apology(e.name, e.code)
@@ -116,5 +117,4 @@ for code in default_exceptions:
 
 
 if __name__ == '__main__':
-    # app.run(debug=True,port=8080)
     app.run(debug=True,port=8080)
