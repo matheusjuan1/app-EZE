@@ -1,12 +1,18 @@
 {% extends "layout.html" %}
+
 {% block head %}
 <link rel="stylesheet" href="../static/login.css">
 {% endblock %}
+
+{% block title %}
+    Login
+{% endblock %}
+
 {% block main %}
     <h1><i>Organizador</i></h1>
     <form action="/organizador" method="POST">
         <input tabindex="1" autofocus placeholder="Email" type="email" required><br>
         <input tabindex="2" placeholder="Senha" type="password" required><br>
-        <button tabindex="3" type="submit">Entrar</button>
+        <button class="botao" tabindex="3" type="submit">Entrar</button>
     </form>
 {% endblock %}

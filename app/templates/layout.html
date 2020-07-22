@@ -13,8 +13,7 @@
 
     <link rel="shortcut icon" href="../static/img/favicon.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/c8284bd1fb.js" crossorigin="anonymous"></script>
-
-    <link href="/static/styles.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="../static/layout.css">
     {% block head %}{% endblock %}
 
@@ -22,13 +21,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-    <title>EZE party</title>
+    <title>EZE party -{% block title %}{% endblock %}</title>
 
 </head>
 
 <body>
     <nav id="navbarbg" class="navbar navbar-expand-md navbar-light bg-light">
-        <img id="logoeze2" src="../static/img/logo.png" alt="">
+        <a href="/"><img id="logoeze2" src="../static/img/logo.png" alt=""></a>
         <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
             id="buttonnav" data-target="#navbar" data-toggle="collapse" type="button" onclick="diminuir()">
             <i class="fas fa-bars"></i>
