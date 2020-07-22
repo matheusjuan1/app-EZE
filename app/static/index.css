@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+body{
+    background-color: black
+}
+
 @font-face {
     font-family: "Brush";
     src: url(../fonts/brush-script-mt-italic.ttf);
@@ -11,6 +15,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+::-webkit-scrollbar{
+    width: 7px
+}
+::-webkit-scrollbar-track{
+    background-color: black;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgba(255, 0, 0, 0.7);
+    border-radius: 50px;
+}
 
 
 .paiIndex{
@@ -81,12 +96,17 @@
     filter: drop-shadow(0px 0px 15px red)
 }
 
+.btnIndex a{
+    color: white;
+    text-decoration: none
+}
+
 
 /* ____________________________________________________________________________________________________________________________________ */
 
 
 .avisosIndex{
-    min-height: 200vh;
+    height: 160vh;
     width: 100%;
     background-color: black
 }

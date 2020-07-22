@@ -47,7 +47,7 @@ def index():
 # <<<<<<< HEAD
     return render_template("index.html")
 # =======
-    return redirect("index.html")
+    # return redirect("index.html")
 
 @app.route("/edicoes")
 def edicoes():

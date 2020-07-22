@@ -53,12 +53,15 @@
     </div>
     {% endif %} -->
 
+    {% block index %}
+
     <main class="container p-5">
         <div class="mainp">
             {% block main %}{% endblock %}
         </div>
     </main>
 
+    {% endblock %}
     <footer class="small text-center text-muted">
         <img src="../static/img/logo.png" alt=""> <br>
         <i class="fab fa-facebook"></i>
