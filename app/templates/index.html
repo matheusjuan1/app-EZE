@@ -1,18 +1,19 @@
+{% extends "layout.html" %}
 {% block head %}
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/index.css">
 {% endblock %}
 
-{% block main %}
+{% block index %}
 <div class="paiIndex" id="pai">
     <video id="video" muted autoplay src="../static/img/index/const.mp4" loop class="video"></video>
     <div class="containerIndex">
         <img src="../static/img/logo.png" id="imgLogo" class="imgLogo"><br>
-        <button type="button" class="btn btn-danger btnIndex">Danger</button>
-        <button type="button" class="btn btn-danger btnIndex">Danger</button>
-        <button type="button" class="btn btn-danger btnIndex">Danger</button>
-        <button type="button" class="btn btn-danger btnIndex">Danger</button>
+        <button type="button" class="btn btn-danger btnIndex"><a href="#">Comprar</a></button>
+        <button type="button" class="btn btn-danger btnIndex"><a href="/edicoes">Edições</a></button>
+        <button type="button" class="btn btn-danger btnIndex"><a href="#">Promoter</a></button>
+        <button type="button" class="btn btn-danger btnIndex"><a href="#">Organizador</a></button>
     </div>
 </div>
 <div class="avisosIndex" id="avisos">
@@ -109,7 +110,7 @@
 
         (function () {
             var $subir = $('#containerAvisos'),
-                offset2 = $(window).height() * 1/2;
+                offset2 = $(window).height() * 3/4;
 
             function animeScroll2() {
                 var documentTop = $(document).scrollTop();
@@ -117,14 +118,15 @@
                 $subir.each(function () {
                     var itemTop1 = $(this).offset().top;
                     
-                    if (documentTop > (offset2 - itemTop1) - 200) {
+                    if (documentTop > (itemTop1 - offset2)) {
                         containerAvisos.style.opacity = '1';
                         containerAvisos.style.paddingTop = '5%';
-                        // console.log(offset2)
+                        navbarbg.style.marginTop = '0px'
                     }
                     else {
                         containerAvisos.style.opacity = '0';
                         containerAvisos.style.paddingTop = '8%';
+                        navbarbg.style.marginTop = '-200px'
                     }
                 });
             }
@@ -134,7 +136,6 @@
                 animeScroll2();
             });
         }());
-
 </script>
 
 {% endblock %}
