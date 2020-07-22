@@ -4,34 +4,66 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" href="../static/comprar.css">
+<script src="https://kit.fontawesome.com/c8284bd1fb.js" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block index %}
 
 <div class="containerComprar">
-    <div class="lote1 lotes">
+    <div class="lotes descer">
         <div class="blur">
             <h1>LOTE 1</h1>
             <span>15-6-2020</span><br>
             <span>R$15,00</span><br>
-            <button type="button" class="btn btn-danger btnIndex"><a href="/promoter">Promoter</a></button><br>
+            <button type="button" onclick="promoters()" class="btn btn-danger btnIndex">Comprar</button><br>
         </div>
     </div>
-    <div class="lote2 lotes">
-        <div class="blur">
+    <div class="lotes">
+        <div class="blur blur2">
             <h1>LOTE 2</h1>
             <span>30-10-2020</span><br>
             <span>R$20,00</span><br>
-            <button type="button" class="btn btn-danger btnIndex"><a href="/promoter">Promoter</a></button><br>
+            <button type="button" disabled onclick="promoters()" class="btn btn-danger btnIndex">Comprar</button><br>
         </div>
     </div>
-    <div class="lote3 lotes">
-        <div class="blur">
+    <div class="lotes">
+        <div class="blur blur2">
             <h1>LOTE 3</h1>
             <span>25-12-2020</span><br>
             <span>R$25,00</span><br>
-            <button type="button" class="btn btn-danger btnIndex"><a href="/promoter">Promoter</a></button><br>
+            <button type="button" disabled onclick="promoters()" class="btn btn-danger btnIndex">Comprar</button><br>
         </div>
+    </div>
+    <div class="promoters" id="div_promo">
+        <div class="proms prom1">
+            <div class="div_img">
+                <img src="../static/img/compras/biza.jpeg">
+            </div>
+            <p>Falar com Biza:</p>
+            <button type="button" onclick="direct_whats()" class="btn btn-danger btnIndex"><i class="fab fa-whatsapp"></i> falar</button>    
+        </div>
+        <div class="proms prom2">
+            <div class="div_img">
+                <img src="../static/img/compras/livia.jpeg">
+            </div>
+            <p>Falar com Lívia:</p>
+            <button type="button" class="btn btn-danger btnIndex"><i class="fab fa-whatsapp"></i> falar</button> 
+        </div>
+        <div class="proms prom3">
+            <div class="div_img">
+                <img src="../static/img/compras/titoria.jpeg">
+            </div>
+            <p>Falar com Titoria:</p>
+            <button type="button" class="btn btn-danger btnIndex"><i class="fab fa-whatsapp"></i> falar</button> 
+        </div>
+        <div class="proms prom4">
+            <div class="div_img">
+                <img src="../static/img/compras/gui.jpeg">
+            </div>
+            <p>Falar com Gui:</p>
+            <button type="button" class="btn btn-danger btnIndex"><i class="fab fa-whatsapp"></i> falar</button> 
+        </div>
+        <span onclick="fechar_promo()" id="fechar_promoid">X</span>
     </div>
 </div>
 
@@ -45,4 +77,17 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
 
+    <script>
+        function promoters(){
+            div_promo.style.left = '10%'
+            fechar_promoid.style.display = 'block'
+        }
+        function fechar_promo(){
+            div_promo.style.left = '200%'
+            fechar_promoid.style.display = 'none'
+        }
+        function direct_whats(){
+            window.location.href="http://api.whatsapp.com/send?1=pt_BR&phone=5511982731431"
+        }
+    </script>
 {% endblock %}
