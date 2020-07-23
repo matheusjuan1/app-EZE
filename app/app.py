@@ -29,8 +29,8 @@ def after_request(response):
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-<<<<<<< HEAD
-# Session(app)
+# <<<<<<< HEAD
+Session(app)
 
 # <<<<<<< HEAD
 # =======
@@ -41,10 +41,10 @@ app.config["SESSION_TYPE"] = "filesystem"
 # Make sure API key is set
 # if not os.environ.get("API_KEY"):
 #     raise RuntimeError("API_KEY not set")
-=======
-Session(app)
+# =======
+# Session(app)
 
->>>>>>> fa50fdc4f6af5748d4159d5a95d6f60dc463eaed
+# >>>>>>> fa50fdc4f6af5748d4159d5a95d6f60dc463eaed
 
 usuarioAT = []
 
@@ -86,22 +86,22 @@ def login_prom():
     return render_template("loginprom.html")     
 
 
-# @app.route("/registerOrg", methods=["GET", "POST"])
-# def registrar():
-#     if request.method == "GET":
-#         return render_template("registrar.html")
-#     else:
-#         nome1 = request.form["nomeP"]
-#         senha = request.form["senhaP"]
-#         email = request.form["emailP"]
-#         perfilP = request.form["urlP"]
-#         hashS = generate_password_hash(senha)
-#         with sqlite3.connect("eze.db") as db:
-#             eze = db.cursor()
-#             insert = eze.execute("INSERT INTO organizador (nome, senha, urlIMG, email) VALUES (?,?,?,?)", (nome1, hashS, perfilP, email))
-#             db.commit()
-#             return render_template("registrar.html")
-#             db.close()
+@app.route("/registerOrg", methods=["GET", "POST"])
+def registrar():
+    if request.method == "GET":
+        return render_template("registrar.html")
+    else:
+        nome1 = request.form["nomeP"]
+        senha = request.form["senhaP"]
+        email = request.form["emailP"]
+        perfilP = request.form["urlP"]
+        hashS = generate_password_hash(senha)
+        with sqlite3.connect("eze.db") as db:
+            eze = db.cursor()
+            insert = eze.execute("INSERT INTO organizador (nomeOrganizador, senha, urlIMG, email) VALUES (?,?,?,?)", (nome1, hashS, perfilP, email))
+            db.commit()
+            return render_template("registrar.html")
+            db.close()
 
 
 # @app.route("/register", methods=["GET", "POST"])
