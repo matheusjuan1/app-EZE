@@ -1,6 +1,6 @@
 import os
 
-import sqlite3
+
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
 # from flask_session import Session
 from tempfile import mkdtemp
@@ -31,6 +31,12 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 # Session(app)
 
+<<<<<<< HEAD
+=======
+# Configure CS50 Library to use SQLite database
+# db = SQL("sqlite:///eze.db")
+
+>>>>>>> 8f87bdb325ee2afb62948ebc85f0762e4a483aa0
 # Make sure API key is set
 # if not os.environ.get("API_KEY"):
 #     raise RuntimeError("API_KEY not set")
