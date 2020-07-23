@@ -29,8 +29,22 @@ def after_request(response):
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+<<<<<<< HEAD
+# Session(app)
+
+# <<<<<<< HEAD
+# =======
+# Configure CS50 Library to use SQLite database
+# db = SQL("sqlite:///eze.db")
+
+# >>>>>>> 8f87bdb325ee2afb62948ebc85f0762e4a483aa0
+# Make sure API key is set
+# if not os.environ.get("API_KEY"):
+#     raise RuntimeError("API_KEY not set")
+=======
 Session(app)
 
+>>>>>>> fa50fdc4f6af5748d4159d5a95d6f60dc463eaed
 
 usuarioAT = []
 
@@ -115,6 +129,8 @@ def promoterLogado():
         db.row_factory = sqlite3.Row
         eze = db.cursor()
         eze.execute("SELECT * FROM promoters WHERE nomePromoter = 'Vitória Gama'")
+        eze.execute("ALTER TABLE lista ADD fk_promoter integer")
+        eze.execute("ALTER TABLE promoters DROP COLUMN fk_promoter")
         linhas = eze.fetchall()
         return render_template("promoter.html", banco = linhas)
 
