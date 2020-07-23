@@ -130,7 +130,7 @@
     text-shadow: 0px 0px 0.3em white;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1196px) {
     .parte_texto {
         float: none;
         width: 100%;
