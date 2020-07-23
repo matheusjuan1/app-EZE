@@ -11,8 +11,8 @@
 {% block main %}
     <h1><i>Organizador</i></h1>
     <form action="/organizador" method="POST">
-        <input tabindex="1" autofocus placeholder="Email" type="email" required><br>
-        <input tabindex="2" placeholder="Senha" type="password" required><br>
+        <input tabindex="1" name="email" autofocus placeholder="Email" type="email" required><br>
+        <input tabindex="2" name="senha" placeholder="Senha" type="password" required><br>
         <button class="btn btn-danger btnIndex" tabindex="3" type="submit">Entrar</button>
     </form>
 {% endblock %}
