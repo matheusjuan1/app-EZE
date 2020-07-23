@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+<!-- {% block head %}
+    <link rel="stylesheet" href="../static/login.css">
+{% endblock %} -->
+
+{% block title %}
+    {% for linha in banco %}
+        {{linha["nomePromoter"]}}
+    {% endfor %}
+{% endblock %}
+
+{% block main %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">email</th>
+            <th scope="col">Foto</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in banco %}
+        <tr>
+            <td>{{i["nomePromoter"]}}</td>
+            <td>{{i["emailPromoter"]}}</td>
+            <td><img src="{{i['urlIMG']}}" style="height: 150px"></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

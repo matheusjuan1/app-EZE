@@ -1,4 +1,4 @@
-pagina principal: 
+﻿pagina principal: 
     apresentação eze
     
     layout:
@@ -52,13 +52,6 @@ organizador:
 
     adicionar promoter
     excluir promoter
-    alterar a data da festa
-    alterar horario
-
-    numero de ingressos restantes:
-        if (numero de ingressos > permitdo){
-            desabilitar vendas
-        }
 
     dash organizador | opcipnal
 

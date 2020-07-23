@@ -31,9 +31,6 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 # Session(app)
 
-# Configure CS50 Library to use SQLite database
-# db = SQL("sqlite:///finance.db")
-
 # Make sure API key is set
 # if not os.environ.get("API_KEY"):
 #     raise RuntimeError("API_KEY not set")
@@ -59,6 +56,36 @@ def login_prom():
 @app.route("/comprar")
 def comprar():
     return render_template("comprar.html")
+
+
+# @app.route("/register", methods=["GET", "POST"])
+# def registrar():
+#     if request.method == "GET":
+#         return render_template("registrar.html")
+#     else:
+#         nome1 = request.form["nomeP"]
+#         senha = request.form["senhaP"]
+#         email = request.form["emailP"]
+#         perfilP = request.form["urlP"]
+#         hashS = generate_password_hash(senha)
+#         with sqlite3.connect("eze.db") as db:
+#             eze = db.cursor()
+#             insert = eze.execute("INSERT INTO promoters (nomePromoter, senha, urlIMG, emailPromoter) VALUES (?,?,?,?)", (nome1, hashS, perfilP, email))
+#             db.commit()
+#             return render_template("registrar.html")
+#             db.close()
+# 
+
+@app.route("/promoterLogado", methods=["GET", "POST"])
+def promoterLogado():
+    if request.method == "GET":
+        db = sqlite3.connect("eze.db")
+        db.row_factory = sqlite3.Row
+        eze = db.cursor()
+        eze.execute("SELECT * FROM promoters WHERE nomePromoter = 'Vitória Gama'")
+        linhas = eze.fetchall()
+        return render_template("promoter.html", banco = linhas)
+
 
 # @app.route("/login", methods=["GET", "POST"])
 # def login():
