@@ -40,7 +40,12 @@
 
 <!-- quando clicar em um botão atualizar aparecerá um formulário para informar qual campo ele quer alterar -->
 <div class="acoes">
-    <div class="form1">
+    <div class="icone1" id="icone1">
+        <i class="fas fa-undo-alt" onclick="alterarCliente()"></i><br>
+        Alterar Cliente
+    </div>
+    
+    <div class="form1" id="form1">
         <form action="/promoter" method="POST">
             <select name="SC" id="">
                 {% for i in banco %}
@@ -56,20 +61,33 @@
         </form>
     </div>
 
-    <div class="form2">
-        <i class="fas fa-plus-square"></i> <br>
-        Adicionar
-        <!-- <form action="/del_cliente" method="POST">
+    <div class="icone2" id="icone2">
+        <i class="fas fa-plus-square" onclick="addCliente()"></i> <br>
+        Adicionar Cliente
+    </div>
+
+    <div class="form2" id="form2">
+        <form action="/del_cliente" method="POST">
             <input tabindex="4" name="nome" autofocus placeholder="nome"><br>
             Sexo: Masculino <input value="M" tabindex="5" name="sexo" type="checkbox"> Feminino <input value="F"
                 tabindex="6" name="sexo" type="checkbox"><br>
             <input tabindex="7" name="lote" autofocus placeholder="lote"><br>
             <input tabindex="8" name="data" autofocus placeholder="AAAA-MM-DD"><br>
             <button class="btn btn-danger btnIndex" tabindex="9" type="submit">Entrar</button>
-        </form> -->
+        </form>
     </div>
 </div>
 
+<script>
+    function addCliente(){
+        form2.style.left = '56%';
+        icone2.style.opacity = '0'
+    }
+    function alterarCliente(){
+        form1.style.left = '6%';
+        icone1.style.opacity = '0'
+    }
+</script>
 {% endblock %}
 
 {% block img_header %}

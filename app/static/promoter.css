@@ -1,30 +1,52 @@
+.table{
+    height: 40vh;
+    overflow-y: scroll;
+}
+
 .acoes{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    height: 36vh;
+    position: relative;
+    overflow-x: hidden
 }
 
-.form1{
-    width: 30%;
+.icone1{
+    width: 50%;
     text-align: center;
-    left: 18%;
     position: relative;
-    right: 2%;
+    transition: all 1s;
 }
-.form2{
-    width: 30%;
+.icone2{
+    width: 50%;
     text-align: center;
-    left: 18%;
     position: relative;
+    transition: all 1s;
 }
 
-.form2 i{
+.icone2 i, .icone1 i{
     font-size: 130px;
     cursor: pointer;
     transition: all 1s;
 }
-.form2 i:hover{
+.icone2 i:hover, .icone1 i:hover{
     font-size: 145px;
     cursor: pointer;
-    box-shadow: 0px 0px 0px 0px red
+    filter: drop-shadow(0px 0px 4px red)
+}
+
+.form1{
+    position: absolute;
+    width: 38%;
+    height: 100%;
+    left: -60%;
+    transition: 1s;
+}
+.form2{
+    position: absolute;
+    width: 38%;
+    height: 100%;
+    left: 130%;
+    transition: 1s;
 }
