@@ -93,12 +93,45 @@ def login_promoter():
 @app.route("/promoter", methods=["GET", "POST"])
 @login_required
 def promoter():
-    db = sqlite3.connect("eze.db")
-    db.row_factory = sqlite3.Row
-    eze = db.cursor()
-    eze.execute("SELECT * FROM promoters WHERE id = ?", [session["user_id"]])
-    linhas = eze.fetchall()
-    return render_template("promoter.html", banco = linhas)          
+    if request.method == "GET":
+        db = sqlite3.connect("eze.db")
+        db.row_factory = sqlite3.Row
+        eze = db.cursor()
+        # user = eze.execute("SELECT * FROM promoters WHERE id = ?", [session["user_id"]])
+        eze.execute("SELECT * FROM lista WHERE fk_promoter = ?", [session["user_id"]])
+        linhas = eze.fetchall()
+        return render_template("promoter.html", banco = linhas)
+    else:
+        nome = request.form["nome"]
+        sexo = request.form["sexo"]
+        select = request.form["SC"]
+        idPro = [session["user_id"]]
+
+        db = sqlite3.connect("eze.db")
+        db.row_factory = sqlite3.Row
+        eze = db.cursor()
+
+        eze.execute(f"UPDATE lista SET nomeCliente = '{nome}', sexo = '{sexo}' WHERE idLista = '{select}'")
+        linhas = eze.fetchall()
+        db.commit()
+        return redirect("/promoter")
+        eze.close()
+
+@app.route("/del_cliente", methods=["POST"])
+@login_required
+def del_cliente():
+    nome = request.form["nome"]
+    sexo = request.form["sexo"]
+    lote = request.form["lote"]
+    data = request.form["data"]
+    idPro = session["user_id"]
+
+    with sqlite3.connect("eze.db") as db:
+        eze = db.cursor()
+        insert = eze.execute(f"INSERT INTO lista (nomeCliente, sexo, Lote, dataCompra, fk_promoter) VALUES (?,?,?,?, '{idPro}')", (nome, sexo, lote, data))
+        db.commit()
+        return redirect("/promoter")
+        db.close()
 
 
 # @app.route("/registerOrg", methods=["GET", "POST"])

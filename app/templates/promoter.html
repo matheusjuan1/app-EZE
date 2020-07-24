@@ -23,11 +23,42 @@
     <tbody>
         {% for i in banco %}
         <tr>
-            <td>{{i["nome"]}}</td>
-            <td>{{i["email"]}}</td>
-            <td><img src="{{i['urlIMG']}}" style="height: 150px"></td>
+            <td>{{i["nomeCliente"]}}</td>
+            <td>{{i["dataCompra"]}}</td>
+            <td>{{i["sexo"]}}</td>
+            <td>{{i["Lote"]}}</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+<br>
+<br>
+<br>
+<!-- quando clicar em um botão atualizar aparecerá um formulário para informar qual campo ele quer alterar -->
+<div>
+    <form action="/promoter" method="POST">
+        <select name="SC" id="">
+            {% for i in banco %}
+            <option value="{{i['idLista']}}">{{i["nomeCliente"]}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input tabindex="1" name="nome" autofocus placeholder="nome"><br>
+        Sexo: Masculino <input value="M" tabindex="2" name="sexo" type="checkbox"> Feminino <input value="F" tabindex="2" name="sexo" type="checkbox">
+        <br>
+        <button class="btn btn-danger btnIndex" tabindex="3" type="submit">Entrar</button>
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form action="/del_cliente" method="POST">
+        <input tabindex="4" name="nome" autofocus placeholder="nome"><br>
+        Sexo: Masculino <input value="M" tabindex="5" name="sexo" type="checkbox"> Feminino <input value="F" tabindex="6" name="sexo" type="checkbox"><br>
+        <input tabindex="7" name="lote" autofocus placeholder="lote"><br>
+        <input tabindex="8" name="data" autofocus placeholder="AAAA-MM-DD"><br>
+        <button class="btn btn-danger btnIndex" tabindex="9" type="submit">Entrar</button>
+    </form>
+</div>
+
 {% endblock %}
