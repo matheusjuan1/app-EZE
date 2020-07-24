@@ -16,6 +16,8 @@
         
 
         <link href="../static/layout1.css" rel="stylesheet">
+        {% block css %}{% endblock %}
+        
         <script src="https://kit.fontawesome.com/c8284bd1fb.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -41,8 +43,8 @@
 
           <nav class="navbar fixed-bottom navbar-expand-lg navbar-dark">
             <a class="navbar-brand" href="#">
-                <img src="../static/img/compras/gui.jpeg" height="45" alt="">
-                <span>{{nome}}</span>
+                <img src="{% block img_header %}{% endblock %}" height="45" alt="">
+                <span>{% block nome_header %}{% endblock %}</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>

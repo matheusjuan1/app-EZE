@@ -97,10 +97,11 @@ def promoter():
         db = sqlite3.connect("eze.db")
         db.row_factory = sqlite3.Row
         eze = db.cursor()
-        # user = eze.execute("SELECT * FROM promoters WHERE id = ?", [session["user_id"]])
+        eze.execute("SELECT * FROM promoters WHERE id = ?", [session["user_id"]])
+        linhas2 = eze.fetchall()
         eze.execute("SELECT * FROM lista WHERE fk_promoter = ?", [session["user_id"]])
         linhas = eze.fetchall()
-        return render_template("promoter.html", banco = linhas)
+        return render_template("promoter.html", banco = linhas, promoter = linhas2)
     else:
         nome = request.form["nome"]
         sexo = request.form["sexo"]

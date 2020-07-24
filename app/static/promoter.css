@@ -1,0 +1,30 @@
+.acoes{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form1{
+    width: 30%;
+    text-align: center;
+    left: 18%;
+    position: relative;
+    right: 2%;
+}
+.form2{
+    width: 30%;
+    text-align: center;
+    left: 18%;
+    position: relative;
+}
+
+.form2 i{
+    font-size: 130px;
+    cursor: pointer;
+    transition: all 1s;
+}
+.form2 i:hover{
+    font-size: 145px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px 0px red
+}
