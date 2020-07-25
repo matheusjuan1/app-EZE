@@ -20,6 +20,7 @@
     <thead>
         <tr>
             <th scope="col">Nome</th>
+            <th scope="col">Editar Usuário</th>
             <th scope="col">Data da Compra</th>
             <th scope="col">Sexo</th>
             <th scope="col">Lote</th>
@@ -29,36 +30,55 @@
         {% for i in banco %}
         <tr>
             <td>{{i["nomeCliente"]}}</td>
+            <td><a href="#acoes"><i class="fas fa-undo-alt"></i></a></td>
             <td>{{i["dataCompra"]}}</td>
             <td>{{i["sexo"]}}</td>
             <td>{{i["Lote"]}}</td>
         </tr>
         {% endfor %}
     </tbody>
+    <tfoot>
+        <tr>
+            <td>Total de Vendas</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{total}}</td>
+        </tr>
+    </tfoot>
 </table>
 <br>
 
+<div class="alert alert-dark" role="alert" id="alerta">
+    A simple dark alert—check it out!
+</div>
+<br>
+
 <!-- quando clicar em um botão atualizar aparecerá um formulário para informar qual campo ele quer alterar -->
-<div class="acoes">
+<div class="acoes" id="acoes">
     <div class="icone1" id="icone1">
         <i class="fas fa-undo-alt" onclick="alterarCliente()"></i><br>
         Alterar Cliente
     </div>
     
     <div class="form1" id="form1">
-        <form action="/promoter" method="POST">
+
+        <label for="formulario1">Trocar Usuário:</label><br>
+        <form id="fomulario1" action="/promoter" method="POST">
             <select name="SC" id="">
                 {% for i in banco %}
                     <option value="{{i['idLista']}}">{{i["nomeCliente"]}}</option>
                 {% endfor %}
             </select>
-            <br><br>
-            <input tabindex="1" name="nome" autofocus placeholder="nome"><br>
-            Sexo: <br> Masculino <input value="M" tabindex="2" name="sexo" type="checkbox"> Feminino <input value="F"
-                tabindex="2" name="sexo" type="checkbox">
             <br>
-            <button class="btn btn-danger btnIndex" tabindex="3" type="submit">Entrar</button>
+            <input tabindex="1" name="nome" autofocus placeholder="nome" class="inpuP" id="nome"><br>
+            Sexo: <br> Masculino <input value="M" tabindex="2" name="sexo" type="checkbox" id="masc">
+                       Feminino <input value="F" tabindex="2" name="sexo" type="checkbox" id="fem">
+            <br>
         </form>
+        <button class="btn btn-danger btnIndex" tabindex="3" onclick="verificar()">Trocar</button>
+
+        <span onclick="fechar_alterarCliente()">X</span>
     </div>
 
     <div class="icone2" id="icone2">
@@ -67,25 +87,72 @@
     </div>
 
     <div class="form2" id="form2">
-        <form action="/del_cliente" method="POST">
-            <input tabindex="4" name="nome" autofocus placeholder="nome"><br>
-            Sexo: Masculino <input value="M" tabindex="5" name="sexo" type="checkbox"> Feminino <input value="F"
-                tabindex="6" name="sexo" type="checkbox"><br>
-            <input tabindex="7" name="lote" autofocus placeholder="lote"><br>
-            <input tabindex="8" name="data" autofocus placeholder="AAAA-MM-DD"><br>
-            <button class="btn btn-danger btnIndex" tabindex="9" type="submit">Entrar</button>
+
+        <label for="formulario2">Adicionar Usuário:</label><br>
+        <form id="fomulario2" action="/del_cliente" method="POST">
+            <input tabindex="4" name="nome" autofocus placeholder="nome" class="inpuP" id="nome2"><br>
+            Sexo: <br> Masculino <input value="M" tabindex="5" name="sexo" type="checkbox" id="masc2"> Feminino <input value="F"
+                tabindex="6" name="sexo" type="checkbox" id="fem2"><br>
+            <input tabindex="7" name="lote" autofocus placeholder="lote"  class="inpuP" id="lote"><br>
+            <input tabindex="8" name="data" autofocus placeholder="AAAA-MM-DD"  class="inpuP" id="data"><br>
         </form>
+        <button class="btn btn-danger btnIndex" tabindex="9" onclick="verificar2()">Adicionar</button>
+        
+        <span onclick="fechar_addCliente()">X</span>
     </div>
 </div>
 
 <script>
     function addCliente(){
-        form2.style.left = '56%';
-        icone2.style.opacity = '0'
+        if (screen.width <= 767){
+            form2.style.left = '5%';
+        }
+        else{
+            form2.style.left = '56%';
+        }
+        icone2.style.opacity = '0';
     }
     function alterarCliente(){
         form1.style.left = '6%';
         icone1.style.opacity = '0'
+    }
+    function fechar_addCliente(){
+        form2.style.left = '130%';
+        icone2.style.opacity = '1';
+    }
+    function fechar_alterarCliente(){
+        if (screen.width <= 767){
+            form1.style.left = '-100%';
+        }
+        else{
+            form1.style.left = '-60%';
+        }
+        icone1.style.opacity = '1'
+    }
+
+    function verificar(){
+        if (nome.value == '' || (masc.checked && fem.checked) || (!masc.checked && !fem.checked)){
+            alerta.innerHTML = `Por favor, informe todos os campos corretamente.`
+            alerta.style.display = 'block'
+            setTimeout(() => {
+                alerta.style.opacity = '1'
+            }, 50);
+        }
+        else{
+            fomulario1.submit()
+        }
+    }
+    function verificar2(){
+        if (nome2.value == '' || (masc2.checked && fem2.checked) || (!masc2.checked && !fem2.checked) || lote.value == '' || data.value == ''){
+            alerta.innerHTML = `Por favor, informe todos os campos corretamente.`
+            alerta.style.display = 'block'
+            setTimeout(() => {
+                alerta.style.opacity = '1'
+            }, 50);
+        }
+        else{
+            fomulario2.submit()
+        }
     }
 </script>
 {% endblock %}
