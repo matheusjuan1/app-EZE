@@ -144,9 +144,9 @@ def promoter():
         return redirect("/promoter")
         eze.close()
 
-@app.route("/del_cliente", methods=["POST"])
+@app.route("/add_cliente", methods=["POST"])
 @login_required
-def del_cliente():
+def add_cliente():
     nome = request.form["nome"]
     sexo = request.form["sexo"]
     lote = request.form["lote"]
@@ -159,6 +159,11 @@ def del_cliente():
         db.commit()
         return redirect("/promoter")
         db.close()
+
+@app.route("/perfil_promoter", methods=["GET"])
+# @login_required
+def perfil_cliente():
+    return render_template("perfilP.html")
 
 
 # @app.route("/registerOrg", methods=["GET", "POST"])

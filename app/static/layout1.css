@@ -5,12 +5,9 @@ body {
 
 
 .navbar-brand img {
-<<<<<<< HEAD
     border-radius: 100%;
     width: 40px;
-=======
     border-radius: 50%;
->>>>>>> 2b3f0d4f111062e5a433c9be785c7636bbdfbcbc
     border: 1.5px red solid;
 }
 .navbar-brand {
