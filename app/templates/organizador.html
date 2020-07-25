@@ -9,6 +9,7 @@
 
 <h1>Lotação {{contagem[0]["count"]}}/300</h1>
 <br>
+<h1>Lote 1</h1>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -16,39 +17,145 @@
             <th scope="col">Nome</th>
             <th scope="col">Sexo</th>
             <th scope="col">Data da Compra</th>
-            <th scope="col">Lote</th>
             <th scope="col"> </th>
         </tr>
     </thead>
     <tbody>
-        {% for i in banco %}
+        {% for i in lista1 %}
         <tr>
             <td>{{i["idLista"]}}</td>
             <td>{{i["nomeCliente"]}}</td>
             <td>{{i["sexo"]}}</td>
             <td>{{i["dataCompra"]}}</td>
-            <td>{{i["Lote"]}}</td>
-            <td><a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" style="color: white;" aria-expanded="false">Editar</a>
-                    <div class="dropdown-menu">
-                        <form action="/organizador" method="POST" class="px-4 py-3">
-                          <div class="form-group">
+            <td>
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" style="color: white;" aria-expanded="false">Editar</a>
+                <div class="dropdown-menu">
+                    <h6 class="dropdown-header">{{i["nomeCliente"]}}</h6>
+                    <div class="dropdown-divider"></div>
+                    <form action="/organizador" method="POST" class="px-4 py-3">
+                        <div class="form-group">
                             <label for="nome">Nome</label>
                             <input type="text" name="nome" class="form-control" id="nome" placeholder="Novo Nome">
-                          </div>
-                          <div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label for="">Sexo</label><br>
-                            <input value="M" type="radio" name="sexo" id=""> <label for="sexo">Masculino</label><br>
-                            <input value="F" type="radio" name="sexo" id=""> <label for="sexo">Feminino</label>
-                          </div>
-                          <button value="{{i['idLista']}}" name="botao" type="submit" class="btn btn-primary">Editar</button>
-                        </form>
-                     </div>   
+                            <input value="M" type="radio" name="sexo" id="m"> <label for="m">Masculino</label><br>
+                            <input value="F" type="radio" name="sexo" id="f"> <label for="f">Feminino</label>
+                        </div>
+                        <button value="{{i['idLista']}}" name="editar" type="submit"
+                            class="btn btn-danger">Editar</button>
+                    </form>
+                    <form class="px-4 py-3" method="POST" action="/organizador">
+                        <button value="{{i['idLista']}}" name="excluir" type="submit" class="btn btn-danger">Excluir
+                            pessoa da lista <i class="fas fa-trash-alt"></i></button>
+                    </form>
+                </div>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+{% if tamanho2 != 0 %}
+<h1>Lote 2</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Data da Compra</th>
+            <th scope="col"> </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in lista1 %}
+        <tr>
+            <td>{{i["idLista"]}}</td>
+            <td>{{i["nomeCliente"]}}</td>
+            <td>{{i["sexo"]}}</td>
+            <td>{{i["dataCompra"]}}</td>
+            <td>
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" style="color: white;" aria-expanded="false">Editar</a>
+                <div class="dropdown-menu">
+                    <h6 class="dropdown-header">{{i["nomeCliente"]}}</h6>
+                    <div class="dropdown-divider"></div>
+                    <form action="/organizador" method="POST" class="px-4 py-3">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" name="nome" class="form-control" id="nome" placeholder="Novo Nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Sexo</label><br>
+                            <input value="M" type="radio" name="sexo" id="m"> <label for="m">Masculino</label><br>
+                            <input value="F" type="radio" name="sexo" id="f"> <label for="f">Feminino</label>
+                        </div>
+                        <button value="{{i['idLista']}}" name="editar" type="submit"
+                            class="btn btn-danger">Editar</button>
+                    </form>
+                    <form class="px-4 py-3" method="POST" action="/organizador">
+                        <button value="{{i['idLista']}}" name="excluir" type="submit" class="btn btn-danger">Excluir
+                            pessoa da lista <i class="fas fa-trash-alt"></i></button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% if tamanho3 != 0 %}
+<h1>Lote 3</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Data da Compra</th>
+            <th scope="col"> </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in lista1 %}
+        <tr>
+            <td>{{i["idLista"]}}</td>
+            <td>{{i["nomeCliente"]}}</td>
+            <td>{{i["sexo"]}}</td>
+            <td>{{i["dataCompra"]}}</td>
+            <td>
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" style="color: white;" aria-expanded="false">Editar</a>
+                <div class="dropdown-menu">
+                    <h6 class="dropdown-header">{{i["nomeCliente"]}}</h6>
+                    <div class="dropdown-divider"></div>
+                    <form action="/organizador" method="POST" class="px-4 py-3">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" name="nome" class="form-control" id="nome" placeholder="Novo Nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Sexo</label><br>
+                            <input value="M" type="radio" name="sexo" id="m"> <label for="m">Masculino</label><br>
+                            <input value="F" type="radio" name="sexo" id="f"> <label for="f">Feminino</label>
+                        </div>
+                        <button value="{{i['idLista']}}" name="editar" type="submit"
+                            class="btn btn-danger">Editar</button>
+                    </form>
+                    <form class="px-4 py-3" method="POST" action="/organizador">
+                        <button value="{{i['idLista']}}" name="excluir" type="submit" class="btn btn-danger">Excluir
+                            pessoa da lista <i class="fas fa-trash-alt"></i></button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+
 
 {% endblock %}
 

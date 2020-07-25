@@ -17,6 +17,8 @@ app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # Ensure responses aren't cached
+
+
 @app.after_request
 def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -33,17 +35,21 @@ Session(app)
 
 usuarioAT = []
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/edicoes")
 def edicoes():
     return render_template("edicoes.html")
 
+
 @app.route("/comprar")
 def comprar():
-    return render_template("comprar.html")    
+    return render_template("comprar.html")
+
 
 @app.route("/login_organizador", methods=["GET", "POST"])
 def login_organizador():
@@ -52,7 +58,7 @@ def login_organizador():
         db.row_factory = sqlite3.Row
         eze = db.cursor()
         email = request.form.get("email")
-        eze.execute("SELECT * FROM organizador WHERE email = ?",[email])
+        eze.execute("SELECT * FROM organizador WHERE email = ?", [email])
         rows = eze.fetchall()
         if len(rows) != 1 or not check_password_hash(rows[0]["senha"], request.form.get("senha")):
             return apology("invalid email and/or password", 403)
@@ -64,7 +70,8 @@ def login_organizador():
 
     else:
         return render_template("loginorg.html")
- 
+
+
 @app.route("/organizador", methods=["GET", "POST"])
 @login_required
 def organizador():
@@ -72,37 +79,56 @@ def organizador():
         db = sqlite3.connect("eze.db")
         db.row_factory = sqlite3.Row
         eze = db.cursor()
-        eze.execute("SELECT * FROM organizador WHERE id = ?", [session["user_id"]])
+        eze.execute("SELECT * FROM organizador WHERE id = ?",
+                    [session["user_id"]])
         organizador = eze.fetchall()
-        eze.execute("SELECT * FROM lista")
-        linhas = eze.fetchall()
+        eze.execute("SELECT * FROM lista where lote = 1")
+        lista1 = eze.fetchall()
+        eze.execute("SELECT * FROM lista where lote = 2")
+        lista2 = eze.fetchall()
+        eze.execute("SELECT * FROM lista where lote = 3")
+        lista3 = eze.fetchall()
         eze.execute("SELECT Count(idLista) as count FROM lista")
         contagem = eze.fetchall()
-        return render_template("organizador.html", banco = linhas, organizador = organizador, contagem = contagem)
-    elif request.method == "POST":
-        nome = request.form["nome"]
-        sexo = request.form["sexo"]
-        idcli = request.form["botao"]
-        db = sqlite3.connect("eze.db")
-        db.row_factory = sqlite3.Row
-        eze = db.cursor()
-        eze.execute(f"UPDATE lista SET nomeCliente = '{nome}', sexo = '{sexo}' WHERE idLista = '{idcli}'")
-        linhas = eze.fetchall()
-        db.commit()
-        eze.close()
-        flash("Nome alterado com sucesso!")
-        return redirect("/organizador")
-        
-        
+        tamanho2 = len(lista2)
+        tamanho3 = len(lista3)
+        return render_template("organizador.html", lista1=lista1, lista2=lista2, tamanho2=tamanho2, tamanho3=tamanho3, lista3=lista3, organizador=organizador, contagem=contagem)
+    else:
+        if 'editar' in request.form:
+            nome = request.form["nome"]
+            sexo = request.form["sexo"]
+            idcli = request.form["editar"]
+            db = sqlite3.connect("eze.db")
+            db.row_factory = sqlite3.Row
+            eze = db.cursor()
+            eze.execute(
+                f"UPDATE lista SET nomeCliente = '{nome}', sexo = '{sexo}' WHERE idLista = '{idcli}'")
+            db.commit()
+            eze.close()
+            flash("Nome alterado com sucesso!")
+            return redirect("/organizador")
+        elif 'excluir' in request.form:
+            idcli = request.form["excluir"]
+            db = sqlite3.connect("eze.db")
+            db.row_factory = sqlite3.Row
+            eze = db.cursor()
+            eze.execute(f"DELETE FROM lista WHERE idLista = '{idcli}'")
+            db.commit()
+            eze.close()
+            flash("Excluido com sucesso!")
+            return redirect("/organizador")
+        else:
+            return redirect("/organizador")
 
-@app.route("/login_promoter", methods=["GET", "POST"] )
+
+@app.route("/login_promoter", methods=["GET", "POST"])
 def login_promoter():
     if request.method == "POST":
         db = sqlite3.connect("eze.db")
         db.row_factory = sqlite3.Row
         eze = db.cursor()
         email = request.form.get("email")
-        eze.execute("SELECT * FROM promoters WHERE email = ?",[email])
+        eze.execute("SELECT * FROM promoters WHERE email = ?", [email])
         rows = eze.fetchall()
         if len(rows) != 1 or not check_password_hash(rows[0]["senha"], request.form.get("senha")):
             return apology("invalid email and/or password", 403)
@@ -113,7 +139,8 @@ def login_promoter():
         return redirect("/promoter")
 
     else:
-        return render_template("loginprom.html") 
+        return render_template("loginprom.html")
+
 
 @app.route("/promoter", methods=["GET", "POST"])
 @login_required
@@ -122,11 +149,13 @@ def promoter():
         db = sqlite3.connect("eze.db")
         db.row_factory = sqlite3.Row
         eze = db.cursor()
-        eze.execute("SELECT * FROM promoters WHERE id = ?", [session["user_id"]])
+        eze.execute("SELECT * FROM promoters WHERE id = ?",
+                    [session["user_id"]])
         linhas2 = eze.fetchall()
-        eze.execute("SELECT * FROM lista WHERE fk_promoter = ?", [session["user_id"]])
+        eze.execute("SELECT * FROM lista WHERE fk_promoter = ?",
+                    [session["user_id"]])
         linhas = eze.fetchall()
-        return render_template("promoter.html", banco = linhas, promoter = linhas2)
+        return render_template("promoter.html", banco=linhas, promoter=linhas2)
     else:
         nome = request.form["nome"]
         sexo = request.form["sexo"]
@@ -137,11 +166,13 @@ def promoter():
         db.row_factory = sqlite3.Row
         eze = db.cursor()
 
-        eze.execute(f"UPDATE lista SET nomeCliente = '{nome}', sexo = '{sexo}' WHERE idLista = '{select}'")
+        eze.execute(
+            f"UPDATE lista SET nomeCliente = '{nome}', sexo = '{sexo}' WHERE idLista = '{select}'")
         linhas = eze.fetchall()
         db.commit()
         return redirect("/promoter")
         eze.close()
+
 
 @app.route("/del_cliente", methods=["POST"])
 @login_required
@@ -154,7 +185,8 @@ def del_cliente():
 
     with sqlite3.connect("eze.db") as db:
         eze = db.cursor()
-        insert = eze.execute(f"INSERT INTO lista (nomeCliente, sexo, Lote, dataCompra, fk_promoter) VALUES (?,?,?,?, '{idPro}')", (nome, sexo, lote, data))
+        insert = eze.execute(
+            f"INSERT INTO lista (nomeCliente, sexo, Lote, dataCompra, fk_promoter) VALUES (?,?,?,?, '{idPro}')", (nome, sexo, lote, data))
         db.commit()
         return redirect("/promoter")
         db.close()
@@ -194,7 +226,7 @@ def del_cliente():
 #             db.commit()
 #             return render_template("registrar.html")
 #             db.close()
-# 
+#
 
 
 @app.route("/logout")
@@ -215,4 +247,4 @@ for code in default_exceptions:
 
 
 if __name__ == '__main__':
-    app.run(debug=True,port=8080)
+    app.run(debug=True, port=8080)
