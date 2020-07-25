@@ -68,7 +68,32 @@ def login_organizador():
 @app.route("/organizador", methods=["GET", "POST"])
 @login_required
 def organizador():
-    return render_template("organizador.html")
+    if request.method == "GET":
+        db = sqlite3.connect("eze.db")
+        db.row_factory = sqlite3.Row
+        eze = db.cursor()
+        eze.execute("SELECT * FROM organizador WHERE id = ?", [session["user_id"]])
+        organizador = eze.fetchall()
+        eze.execute("SELECT * FROM lista")
+        linhas = eze.fetchall()
+        eze.execute("SELECT Count(idLista) as count FROM lista")
+        contagem = eze.fetchall()
+        return render_template("organizador.html", banco = linhas, organizador = organizador, contagem = contagem)
+    elif request.method == "POST":
+        nome = request.form["nome"]
+        sexo = request.form["sexo"]
+        idcli = request.form["botao"]
+        db = sqlite3.connect("eze.db")
+        db.row_factory = sqlite3.Row
+        eze = db.cursor()
+        eze.execute(f"UPDATE lista SET nomeCliente = '{nome}', sexo = '{sexo}' WHERE idLista = '{idcli}'")
+        linhas = eze.fetchall()
+        db.commit()
+        eze.close()
+        flash("Nome alterado com sucesso!")
+        return redirect("/organizador")
+        
+        
 
 @app.route("/login_promoter", methods=["GET", "POST"] )
 def login_promoter():
