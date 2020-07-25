@@ -6,6 +6,7 @@ body {
 
 .navbar-brand img {
     border-radius: 100%;
+    width: 40px;
     border: 1.5px red solid;
 }
 .navbar-brand {
@@ -45,5 +46,8 @@ main {
 @media (max-width: 991px) {
     footer {
         display: block;
+    }
+    .navbar button{
+        width: 20%;
     }
 }

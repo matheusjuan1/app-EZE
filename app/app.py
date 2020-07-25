@@ -99,9 +99,10 @@ def promoter():
         eze = db.cursor()
         eze.execute("SELECT * FROM promoters WHERE id = ?", [session["user_id"]])
         linhas2 = eze.fetchall()
-        eze.execute("SELECT * FROM lista WHERE fk_promoter = ?", [session["user_id"]])
+        eze.execute("SELECT * FROM lista WHERE fk_promoter = ? ORDER BY idLista DESC", [session["user_id"]])
         linhas = eze.fetchall()
-        return render_template("promoter.html", banco = linhas, promoter = linhas2)
+        total = len(linhas)
+        return render_template("promoter.html", banco = linhas, promoter = linhas2, total = total)
     else:
         nome = request.form["nome"]
         sexo = request.form["sexo"]

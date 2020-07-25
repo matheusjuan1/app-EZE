@@ -1,13 +1,91 @@
+::-webkit-scrollbar{
+    width: 7px
+}
+::-webkit-scrollbar-track{
+    background-color: #232323;
+}
+::-webkit-scrollbar-thumb{
+    background-color: white;
+}
+body{
+    scroll-behavior: smooth;
+}
+
+a{
+    color: white;
+}
+a:hover{
+    color: red;
+}
+.main{
+    overflow-y: scroll;
+}
+
+
 .table{
     height: 40vh;
     overflow-y: scroll;
+    margin-bottom: 0
+}
+
+
+form{
+    text-align: left;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+form select{
+    width: 77%;
+    height: 35px;
+    margin-bottom: 3%;
+    color: white;
+    font-weight: 800;
+    background-color: black;
+    border: 2px solid;
+}
+
+button{
+    width: 75%;
+}
+
+.btn{
+    font-weight: 800;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: black;
+    border-color: white;
+    border: 2px solid;
+}
+
+form input{
+    width: 15%;
+    height: 20px;
+    margin-bottom: 6%;
+    color: white;
+    font-weight: 800;
+    background-color: black;
+    border: 2px solid;
+}
+
+form .inpuP{
+    width: 77%;
+    height: 35px;
+    margin-bottom: 3%;
+    color: white;
+    font-weight: 800;
+    background-color: black;
+    border: 2px solid;
 }
 
 .acoes{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    height: 36vh;
+    height: 43vh;
+    margin-bottom: 7%;
     position: relative;
     overflow-x: hidden
 }
@@ -42,6 +120,9 @@
     height: 100%;
     left: -60%;
     transition: 1s;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 800;
 }
 .form2{
     position: absolute;
@@ -49,4 +130,54 @@
     height: 100%;
     left: 130%;
     transition: 1s;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.navbar-brand img {
+    border-radius: 50%;
+    border: 1.5px red solid;
+    width: 40px;
+}
+
+.alert-dark{
+    color: white;
+    background-color: rgba(255,0,0,0.5);
+    border-color: white;
+    width: 100%;
+    overflow: hidden;
+    opacity: 0;
+    display: none;
+    transition: all 1s;
+}
+
+.form2 span, .form1 span{
+    position: absolute;
+    top: 0%;
+    left: 80%;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+/* Responsividade___________________________________________________________________________________________________________ */
+
+@media (max-width: 767px){
+    .icone1, .icone2, .form1,.form2{
+        width: 100%;
+    }
+    .form2{
+        top: 80%;
+        margin-bottom: 5%;
+    }
+    .form1{
+        left: -100%;
+    }
+    .icone2{
+        margin-top: 35%;
+    }
+    .p-5 {
+        padding: 0rem!important;
+    }
 }
