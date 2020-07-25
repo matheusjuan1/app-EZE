@@ -33,24 +33,24 @@ ul {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
 nav {
-    height: 100px;
+    height: 14vmin;
     overflow: hidden;
     width: 98%;
     background-image: linear-gradient(180deg, red, black, black, black, black, black, black, black, red);
     z-index: 1;
+    padding-bottom: 1.5vmin;
     left: 1%;
     position: fixed!important;
-    border-bottom-left-radius: 45px;
-    border-bottom-right-radius: 45px;
+    border-bottom-left-radius: 10vmin;
+    border-bottom-right-radius: 10vmin;
     color: white;
     transition: 0.5s;
-    border: 1px solid black!important;
 }
 
 #buttonnav {
     background-color: transparent;
     outline: none;
-    font-size: 33px;
+    font-size: 6vmin;
     margin-top: 0.6%;
     transition: 0.3s;
     color: white;
@@ -63,7 +63,7 @@ nav {
 
 #navbar ul {
     width: 811px;
-    padding-top: 0.6%;
+    padding-top: 0.4vmin;
     margin: auto
 }
 
@@ -76,7 +76,7 @@ nav a {
 }
 
 nav img {
-    height: 70px;
+    height: 10vmin;
 }
 
 #logoeze2 {
@@ -103,30 +103,21 @@ nav img {
 #navbar .esquerda {
     float: left;
     margin-right: 5%;
-    margin-top: 0.6%;
-    font-size: 26px;
+    margin-top: 0.6vmin;
+    font-size: 4vmin;
 }
 
 #navbar .direita {
     float: right;
     margin-left: 5%;
-    margin-top: 0.6%;
-    font-size: 26px;
+    margin-top: 0.6vmin;
+    font-size: 4vmin;
 }
 
 .headerL {
-    padding-top: 80px;
+    padding-top: 15vmin;
     width: 92%;
     margin: auto;
-}
-
-.alert-primary {
-    color: white;
-    background-image: linear-gradient(180deg, red, black, black, black, black, black, red);
-}
-
-.border {
-    border: 1px solid black!important;
 }
 
 main {
@@ -138,18 +129,18 @@ footer {
 }
 
 footer img {
-    height: 85px;
+    height: 10vmin;
 }
 
 footer p {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 2.2vmin;
+    font-weight: 650;
 }
 
 footer i {
-    margin: 6px;
-    margin-top: 20px;
-    font-size: 35px;
+    margin: 0.7vmin;
+    margin-top: 2.4vmin;
+    font-size: 4.8vmin;
     transition: 0.3s;
 }
 
@@ -165,7 +156,7 @@ footer i:hover {
 /* Responsividade_________________________________________________________________________________________________________________________ */
 @media (max-width: 856px){
     #navbar .esquerda,#navbar .direita{
-        font-size: 26px
+        font-size: 3.6vmin
     }
 }
 
@@ -173,8 +164,7 @@ footer i:hover {
 @media (max-width: 767px) {
     #logoeze2 {
         display: block;
-        padding-top: 0.6%;
-        margin-top: 0.6%;
+        margin-top: 0.7vmin;
         transition: 0.5s;
         cursor: pointer;
     }
@@ -187,11 +177,11 @@ footer i:hover {
     }
     #navbar .esquerda {
         margin-right: 0;
-        font-size: 22px;
+        font-size: 4vmin;
     }
     #navbar .direita {
         margin-left: 0;
-        font-size: 22px;
+        font-size: 4vmin;
     }
     #navbar ul {
         width: 90%;

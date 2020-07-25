@@ -1,7 +1,6 @@
 .edicao {
     margin-bottom: 5vmin;
     display: flex;
-    flex-wrap: wrap;
     width: 100%;
 }
 
@@ -149,6 +148,7 @@
 
     .edicao {
         margin-bottom: 1.5vmin;
+        flex-wrap: wrap;
     }
 
     .edicao1 img {

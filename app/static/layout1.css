@@ -1,12 +1,21 @@
 body {
     background-color: black;
     color: white;
+    padding-bottom: 20vh;
+    text-align: center;
 }
 
+.logoeze {
+    margin-top: 4.5vmin;
+    height: 14vmin;
+}
 
 .navbar-brand img {
+<<<<<<< HEAD
     border-radius: 100%;
     width: 40px;
+=======
+>>>>>>> 1fce511947ac26899bb17a3f9f8a4bdd71103fce
     border-radius: 50%;
     border: 1.5px red solid;
 }
@@ -17,6 +26,8 @@ body {
 
 nav {
     background-color: #232323!important;
+    padding: 1vmin 5vmin!important;
+    text-align: left;
 }
 
 footer {
