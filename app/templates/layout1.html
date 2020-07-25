@@ -37,6 +37,8 @@
             </header>
         {% endif %}
 
+        <img class="logoeze" src="../static/img/logo.png" alt="">
+
         <main class="container p-5">
             {% block main %}{% endblock %}
         </main>
@@ -52,13 +54,15 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home</a>
+                  <a class="nav-link" href="/organizador">Home</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
-                </li>
-                <footer>Copyright &copy; 2020</footer>
+                {% block nav %}{% endblock %}
+                
               </ul>
+              <ul class="navbar-nav ml-auto mt-2">
+                <li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
+            </ul>
+            <footer>Copyright &copy; 2020</footer>
             </div>
           </nav>
     </body>

@@ -115,14 +115,9 @@ nav img {
 }
 
 .headerL {
-    padding-top: 80px;
+    padding-top: 15vmin;
     width: 92%;
     margin: auto;
-}
-
-.alert-primary {
-    color: white;
-    background-image: linear-gradient(180deg, red, black, black, black, black, black, red);
 }
 
 .border {

@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <nav id="navbarbg" class="navbar navbar-expand-md navbar-light bg-light">
+    <nav id="navbarbg" class="navbar navbar-expand-md navbar-light">
         <a href="/"><img id="logoeze2" src="../static/img/logo.png" alt=""></a>
         <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
             id="buttonnav" data-target="#navbar" data-toggle="collapse" type="button" onclick="diminuir()">
@@ -44,13 +44,13 @@
     </nav>
 
 
-    <!-- {% if get_flashed_messages() %}
+    {% if get_flashed_messages() %}
     <div class="headerL">
         <div class="alert alert-primary border text-center" role="alert">
             {{ get_flashed_messages() | join(" ") }}
         </div>
     </div>
-    {% endif %} -->
+    {% endif %}
 
     {% block index %}
 

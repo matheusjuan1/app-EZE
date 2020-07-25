@@ -61,7 +61,8 @@ def login_organizador():
         eze.execute("SELECT * FROM organizador WHERE email = ?", [email])
         rows = eze.fetchall()
         if len(rows) != 1 or not check_password_hash(rows[0]["senha"], request.form.get("senha")):
-            return apology("invalid email and/or password", 403)
+            flash("E-mail e/ou senha inválidos!")
+            return redirect("/login_organizador")
         usuarioAT.append(request.form.get("email"))
 
         session["user_id"] = rows[0]["id"]
@@ -117,6 +118,19 @@ def organizador():
             eze.close()
             flash("Excluido com sucesso!")
             return redirect("/organizador")
+        elif 'adicionar' in request.form:
+            nome = request.form["nome"]
+            sexo = request.form["sexo"]
+            lote = request.form["lote"]
+            data = request.form["data"]
+
+            with sqlite3.connect("eze.db") as db:
+                eze = db.cursor()
+                eze.execute(
+                    f"INSERT INTO lista (nomeCliente, sexo, Lote, dataCompra, fk_promoter) VALUES (?,?,?,?, '1')", (nome, sexo, lote, data))
+                db.commit()
+                return redirect("/organizador")
+                
         else:
             return redirect("/organizador")
 
@@ -131,7 +145,8 @@ def login_promoter():
         eze.execute("SELECT * FROM promoters WHERE email = ?", [email])
         rows = eze.fetchall()
         if len(rows) != 1 or not check_password_hash(rows[0]["senha"], request.form.get("senha")):
-            return apology("invalid email and/or password", 403)
+            flash("E-mail e/ou Senha inválidos!")
+            return redirect("/login_promoter")
         usuarioAT.append(request.form.get("email"))
 
         session["user_id"] = rows[0]["id"]
@@ -152,15 +167,16 @@ def promoter():
         eze.execute("SELECT * FROM promoters WHERE id = ?",
                     [session["user_id"]])
         linhas2 = eze.fetchall()
-        eze.execute("SELECT * FROM lista WHERE fk_promoter = ? ORDER BY idLista DESC", [session["user_id"]])
+        eze.execute(
+            "SELECT * FROM lista WHERE fk_promoter = ? ORDER BY idLista DESC", [session["user_id"]])
         linhas = eze.fetchall()
         total = len(linhas)
-        return render_template("promoter.html", banco = linhas, promoter = linhas2, total = total)
+        return render_template("promoter.html", banco=linhas, promoter=linhas2, total=total)
     else:
         nome = request.form["nome"]
         sexo = request.form["sexo"]
         select = request.form["SC"]
-        idPro = [session["user_id"]]
+        idPro = session["user_id"]
 
         db = sqlite3.connect("eze.db")
         db.row_factory = sqlite3.Row
@@ -170,8 +186,9 @@ def promoter():
             f"UPDATE lista SET nomeCliente = '{nome}', sexo = '{sexo}' WHERE idLista = '{select}'")
         linhas = eze.fetchall()
         db.commit()
-        return redirect("/promoter")
         eze.close()
+        return redirect("/promoter")
+        
 
 
 @app.route("/del_cliente", methods=["POST"])
@@ -185,11 +202,10 @@ def del_cliente():
 
     with sqlite3.connect("eze.db") as db:
         eze = db.cursor()
-        insert = eze.execute(
+        eze.execute(
             f"INSERT INTO lista (nomeCliente, sexo, Lote, dataCompra, fk_promoter) VALUES (?,?,?,?, '{idPro}')", (nome, sexo, lote, data))
         db.commit()
         return redirect("/promoter")
-        db.close()
 
 
 # @app.route("/registerOrg", methods=["GET", "POST"])
@@ -207,7 +223,6 @@ def del_cliente():
 #             insert = eze.execute("INSERT INTO organizador (nomeOrganizador, senha, urlIMG, email) VALUES (?,?,?,?)", (nome1, hashS, perfilP, email))
 #             db.commit()
 #             return render_template("registrar.html")
-#             db.close()
 
 
 # @app.route("/register", methods=["GET", "POST"])
@@ -225,7 +240,6 @@ def del_cliente():
 #             insert = eze.execute("INSERT INTO promoters (nomePromoter, senha, urlIMG, emailPromoter) VALUES (?,?,?,?)", (nome1, hashS, perfilP, email))
 #             db.commit()
 #             return render_template("registrar.html")
-#             db.close()
 #
 
 

@@ -1,5 +1,6 @@
 {% extends "layout1.html" %}
 {% block css %}
+<link rel="stylesheet" href="../static/organizador.css">
 {% endblock %}
 
 {% block title %}
@@ -9,11 +10,11 @@
 
 <h1>Lotação {{contagem[0]["count"]}}/300</h1>
 <br>
-<h1>Lote 1</h1>
+<h1 style="float: left;">Lote 1</h1>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col">ID</th>
+            <th scope="col">Nº</th>
             <th scope="col">Nome</th>
             <th scope="col">Sexo</th>
             <th scope="col">Data da Compra</th>
@@ -54,22 +55,12 @@
             </td>
         </tr>
         {% endfor %}
-    </tbody>
-</table>
-{% if tamanho2 != 0 %}
-<h1>Lote 2</h1>
-<table class="table table-striped">
-    <thead>
+        {% if tamanho2 != 0 %}
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Sexo</th>
-            <th scope="col">Data da Compra</th>
-            <th scope="col"> </th>
+            <td><h1>Lote 2</h1></td>
+            <td colspan="4"></td>
         </tr>
-    </thead>
-    <tbody>
-        {% for i in lista1 %}
+        {% for i in lista2 %}
         <tr>
             <td>{{i["idLista"]}}</td>
             <td>{{i["nomeCliente"]}}</td>
@@ -102,23 +93,13 @@
             </td>
         </tr>
         {% endfor %}
-    </tbody>
-</table>
-{% endif %}
-{% if tamanho3 != 0 %}
-<h1>Lote 3</h1>
-<table class="table table-striped">
-    <thead>
+        {% endif %}
+        {% if tamanho3 != 0 %}
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Sexo</th>
-            <th scope="col">Data da Compra</th>
-            <th scope="col"> </th>
+            <td><h1>Lote 3</h1></td>
+            <td colspan="4"></td>
         </tr>
-    </thead>
-    <tbody>
-        {% for i in lista1 %}
+        {% for i in lista3 %}
         <tr>
             <td>{{i["idLista"]}}</td>
             <td>{{i["nomeCliente"]}}</td>
@@ -151,10 +132,32 @@
             </td>
         </tr>
         {% endfor %}
+        {% endif %}
     </tbody>
 </table>
-{% endif %}
-
+<h1>Adicionar Nome:</h1>
+<form action="/organizador" method="POST">
+    <div class="form-group">
+        <input name="nome" type="text" class="form-control" id="" placeholder="Nome">
+    </div>
+    <div class="form-group">
+        <label for="">Sexo</label><br>
+        <input value="M" type="radio" name="sexo" id="m"> <label for="m">Masculino</label><br>
+        <input value="F" type="radio" name="sexo" id="f"> <label for="f">Feminino</label>
+    </div>
+    <div class="form-group">
+        <label for="">Lote</label>
+        <select name="lote" class="form-control" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input name="data" placeholder="AAAA-MM-DD" class="form-control" type="text">
+    </div>
+    <button name="adicionar" type="submit" class="btn btn-danger">Adicionar</button>
+</form>
 
 
 {% endblock %}
@@ -165,4 +168,10 @@
 
 {% block nome_header %}
 {{organizador[0]["nome"]}}
+{% endblock %}
+
+{% block nav %}
+<li class="nav-item">
+    <a class="nav-link" href="#">Promoters</a>
+</li>
 {% endblock %}
