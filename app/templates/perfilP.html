@@ -1,26 +1,29 @@
 {% extends "layout1.html" %}
 
 {% block css %}
-    <link rel="stylesheet" href="../static/perfilP.css">
+<link rel="stylesheet" href="../static/perfilP.css">
 {% endblock %}
 
 {% block title %}
-    {% for linha in promoter %}
+    {% for linha in user %}
         {{linha["nome"]}}
     {% endfor %}
 {% endblock %}
 
+
 {% block body %}
 <div class="pai">
     <div class="img">
-        <img src="../static/img/compras/titoria.jpeg" alt="">
-        Vitoria
+        {% for i in user %}
+        <img src="{{i['urlIMG']}}" alt="">
+        {{i["nome"]}}
+        {% endfor %}
     </div>
     <div class="info">
         <div class="dados">
             <div class="dado1">
                 <p>
-                    34 <br>
+                    {{quant}} <br>
                     Ingressos Vendidos
                 </p>
             </div>
@@ -39,9 +42,9 @@
     </div>
     <div class="dash">
         <div class="grafico1">
-            <p>34/50</p>
+            <p>{{quant}}/50</p>
             <div class="grafico10">
-                <label for="copo">Continua que ta Perto</label> <br>
+                <label for="copo" id="label_gf10">Continua que ta Perto</label> <br>
                 <img id="copo" src="../static/img/perfil/copoM.png" alt="">
             </div>
         </div>
@@ -49,7 +52,7 @@
             <canvas id="canvas" class="can"></canvas>
         </div>
         <div class="grafico3">
-            
+            <canvas id="canvas2" class="can2"></canvas>
         </div>
     </div>
 </div>
@@ -59,63 +62,128 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 <script>
-    var timeFormat = 'MM/DD/YYYY HH:mm';
-    
+
+    let total = '{{quant}}';
+    function verificar(){
+        if (total <= 25){
+            label_gf10.innerHTML = "Vai vender Ingresso Peste."
+            copo.src = '../static/img/perfil/copoV.png'
+        }
+        else if (total <= 49){
+            label_gf10.innerHTML = "Continua que ta Perto."
+            copo.src = '../static/img/perfil/copoM.png'
+        }
+        else{
+            label_gf10.innerHTML = "Estourou cachorro."
+            copo.src = '../static/img/perfil/copoC.png'
+        }
+    }
+    verificar();
+
+    let fem = '{{fem}}'
+    let masc = '{{masc}}'
     var config = {
-        type: 'line',
+        type: 'pie',
         data: {
             labels: [ // Date Objects
-                1,2
+                'Homens', 'Mulheres'
             ],
             datasets: [{
-                label: 'My First dataset',
-                backgroundColor: 'rgb(226, 0, 0)',
-                borderColor: 'rgb(226, 0, 0)',
-                fill: false,
-                data: [
-                    50,60
-                ],
-            }, {
-                label: 'My Second dataset',
-                backgroundColor: 'rgb(226, 0, 0)',
-                borderColor: 'rgb(226, 255, 0)',
-                fill: false,
-                data: [
-                    50,60
-                ],
+                label: 'Número de Compras por Gênero',
+                backgroundColor: ["blue", "#fc0fc0"],
+                data: [fem, masc],
             }]
         },
         options: {
-            title: {
-                text: 'Chart.js Time Scale'
+            legend: {
+                labels: {
+                    fontColor: 'white'
+                }
             },
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 xAxes: [{
-                    type: 'time',
-                    time: {
-                        parser: timeFormat,
-                        // round: 'day'
-                        tooltipFormat: 'll HH:mm'
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Date'
-                    }
+                    display: false
                 }],
                 yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'value'
-                    }
+                    display: false,
+                    ticks: {
+                        min: 0
+                    },
                 }]
             },
         }
     };
+    
+    // Grafico 2______________________________________________________________________________________________________________________________________ 
+    let data = JSON.parse('{{data | tojson}}')
+    let ingressos = JSON.parse('{{ingressos | tojson}}')
 
-    window.onload = function() {
+    var config2 = {
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Vendas X Data',
+                backgroundColor: 'black',
+                borderColor: 'rgba(255,255,255,1)',
+                borderWidth: 3,
+                data: [],
+            }]
+        },
+        options: {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: '#ffffff'
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{
+                    scaleLabel: {
+						display: true,
+						label: 'Data'
+					}
+                }],
+                yAxes: [{
+                    scaleLabel: {
+						display: true,
+						label: 'Vendas'
+					},
+                    ticks: {
+                        min: 0
+                    },
+                }]
+            },
+        }
+    };
+    let total_datas = '{{total_datas}}'
+    for(let i = 0; i < total_datas; i++){
+        config2.data.labels.push(data[i])
+        config2.data.datasets[0].data.push(ingressos[i])
+    }
+    // Renderização dos gráficos
+    window.onload = function () {
         var ctx = document.getElementById('canvas').getContext('2d');
         window.myLine = new Chart(ctx, config);
-
+        var ctx2 = document.getElementById('canvas2').getContext('2d');
+        window.myLine = new Chart(ctx2, config2);
     };
+
 </script>
+{% endblock %}
+
+{% block img_header %}
+    {% for linha in user %}
+        {{linha["urlIMG"]}}
+    {% endfor %}
+{% endblock %}
+
+{% block nome_header %}
+    {% for linha in user %}
+        {{linha["nome"]}}
+    {% endfor %}
 {% endblock %}

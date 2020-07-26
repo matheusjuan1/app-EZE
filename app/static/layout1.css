@@ -11,12 +11,8 @@ body {
 }
 
 .navbar-brand img {
-<<<<<<< HEAD
-    border-radius: 100%;
-    width: 40px;
-=======
->>>>>>> 1fce511947ac26899bb17a3f9f8a4bdd71103fce
     border-radius: 50%;
+    width: 40px;
     border: 1.5px red solid;
 }
 .navbar-brand {

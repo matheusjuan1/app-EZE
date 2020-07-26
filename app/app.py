@@ -7,6 +7,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
+import json
 
 from helpers import apology, login_required
 
@@ -34,7 +35,6 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 usuarioAT = []
-
 
 @app.route("/")
 def index():
@@ -177,7 +177,9 @@ def promoter():
         sexo = request.form["sexo"]
         select = request.form["SC"]
         idPro = session["user_id"]
-
+        image = request.form["img"]
+        print(image)
+        
         db = sqlite3.connect("eze.db")
         db.row_factory = sqlite3.Row
         eze = db.cursor()
@@ -208,9 +210,35 @@ def add_cliente():
         return redirect("/promoter")
 
 @app.route("/perfil_promoter", methods=["GET"])
-# @login_required
+@login_required
 def perfil_cliente():
-    return render_template("perfilP.html")
+    db = sqlite3.connect("eze.db")
+    db.row_factory = sqlite3.Row
+    eze = db.cursor()
+    eze.execute("SELECT * FROM promoters WHERE id = ?",
+                [session["user_id"]])
+    linhas2 = eze.fetchall()
+    eze.execute(
+        "SELECT * FROM lista WHERE fk_promoter = ? ORDER BY idLista DESC", [session["user_id"]])
+    linhas = eze.fetchall()
+    total = len(linhas)
+    eze.execute("SELECT * FROM lista WHERE fk_promoter = ? AND sexo = 'M'", [session["user_id"]])
+    masculino = eze.fetchall()
+    masc = len(masculino)
+    eze.execute("SELECT * FROM lista WHERE fk_promoter = ? AND sexo = 'F'", [session["user_id"]])
+    femi = eze.fetchall()
+    fem = len(femi)
+    
+    eze.execute("SELECT dataCompra , COUNT(dataCompra) FROM lista WHERE fk_promoter = ? GROUP BY dataCompra", [session["user_id"]])
+    datas = eze.fetchall()
+    total_datas = len(datas)
+    valores_datas = []
+    ingressos = []
+    for i in datas:
+        valores_datas.append(i["dataCompra"])
+        ingressos.append(i["COUNT(dataCompra)"])
+
+    return render_template("perfilP.html", user = linhas2, quant = total, vendas = linhas, masc = masc, fem = fem, data = valores_datas, total_datas = total_datas, ingressos = ingressos)
 
 
 # @app.route("/registerOrg", methods=["GET", "POST"])
