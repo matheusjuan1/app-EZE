@@ -1,3 +1,57 @@
 td h1 {
     margin-left: 0;
 }
+
+.form-group {
+    font-weight: bold;
+}
+
+.adicionar {
+    width: 60vmin;
+    text-align: left;
+}
+
+.promoters {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 5vmin;
+    
+}
+
+.promoter {
+    border: 2px red solid;
+    border-radius: 5vmin;
+    width: 30vmin;
+    margin: 1vmin 3vmin;
+}
+
+.promoter i {
+    font-size: 4vmin;
+    margin-bottom: 3vmin;
+    cursor: pointer;
+}
+
+.promoter i:hover {
+    color: red;
+    filter: drop-shadow(0px 0px 5px red);
+}
+
+.container {
+    margin: 4.5vmin auto 2vmin auto;
+}
+
+.adicionarp i{
+    font-size: 9vmin;
+    margin-bottom: 3vmin;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.adicionarp i:hover {
+    color: red;
+    filter: drop-shadow(0px 0px 5px red);
+}
+
+#formulario {
+    width: 50vmin;
+}

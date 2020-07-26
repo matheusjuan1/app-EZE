@@ -51,6 +51,9 @@ def comprar():
     return render_template("comprar.html")
 
 
+# _________________________________ Rotas Organizador _________________________________________________
+
+
 @app.route("/login_organizador", methods=["GET", "POST"])
 def login_organizador():
     if request.method == "POST":
@@ -130,9 +133,51 @@ def organizador():
                     f"INSERT INTO lista (nomeCliente, sexo, Lote, dataCompra, fk_promoter) VALUES (?,?,?,?, '1')", (nome, sexo, lote, data))
                 db.commit()
                 return redirect("/organizador")
-                
+
         else:
             return redirect("/organizador")
+
+
+@app.route("/organizador/promoters", methods=["GET", "POST"])
+@login_required
+def orgpromoters():
+    if request.method == "GET":
+        db = sqlite3.connect("eze.db")
+        db.row_factory = sqlite3.Row
+        eze = db.cursor()
+        eze.execute("SELECT * FROM organizador WHERE id = ?",
+                    [session["user_id"]])
+        organizador = eze.fetchall()
+        eze.execute("SELECT promoters.*, count(fk_promoter) as count FROM promoters LEFT JOIN lista ON lista.fk_promoter = id GROUP BY id ORDER BY nome")
+        promoters = eze.fetchall()
+        return render_template("orgpromoters.html", organizador=organizador, promoters=promoters)
+    else:
+        if 'adicionar' in request.form:
+            nome = request.form["nome"]
+            email = request.form["email"]
+            senha = '12345'
+            hashS = generate_password_hash(senha)
+            with sqlite3.connect("eze.db") as db:
+                eze = db.cursor()
+                eze.execute("INSERT INTO promoters (nome, senha, email) VALUES (?,?,?)", (nome, hashS, email))
+                db.commit()
+            flash("Promoter adicionado com sucesso")
+            return redirect("/organizador/promoters")
+        elif 'excluir' in request.form:
+            idp = request.form["excluir"]
+            db = sqlite3.connect("eze.db")
+            db.row_factory = sqlite3.Row
+            eze = db.cursor()
+            eze.execute(f"DELETE FROM promoters WHERE id = '{idp}'")
+            db.commit()
+            eze.close()
+            flash("Promoter excluído com sucesso")
+            return redirect("/organizador/promoters")
+        return redirect("/organizador/promoters")    
+
+
+
+# _________________________________ Rotas Promoters _________________________________________________
 
 
 @app.route("/login_promoter", methods=["GET", "POST"])
@@ -188,7 +233,6 @@ def promoter():
         db.commit()
         eze.close()
         return redirect("/promoter")
-        
 
 
 @app.route("/del_cliente", methods=["POST"])
