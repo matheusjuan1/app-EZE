@@ -267,42 +267,63 @@ def add_cliente():
         db.commit()
         return redirect("/promoter")
 
-
-@app.route("/perfil_promoter", methods=["GET"])
+@app.route("/perfil_promoter", methods=["GET", "POST"])
 @login_required
 def perfil_cliente():
-    db = sqlite3.connect("eze.db")
-    db.row_factory = sqlite3.Row
-    eze = db.cursor()
-    eze.execute("SELECT * FROM promoters WHERE id = ?",
-                [session["user_id"]])
-    linhas2 = eze.fetchall()
-    eze.execute(
-        "SELECT * FROM lista WHERE fk_promoter = ? ORDER BY idLista DESC", [session["user_id"]])
-    linhas = eze.fetchall()
-    total = len(linhas)
-    eze.execute(
-        "SELECT * FROM lista WHERE fk_promoter = ? AND sexo = 'M'", [session["user_id"]])
-    masculino = eze.fetchall()
-    masc = len(masculino)
-    eze.execute(
-        "SELECT * FROM lista WHERE fk_promoter = ? AND sexo = 'F'", [session["user_id"]])
-    femi = eze.fetchall()
-    fem = len(femi)
 
-    eze.execute("SELECT dataCompra , COUNT(dataCompra) FROM lista WHERE fk_promoter = ? GROUP BY dataCompra", [
-                session["user_id"]])
-    datas = eze.fetchall()
-    total_datas = len(datas)
-    valores_datas = []
-    ingressos = []
-    for i in datas:
-        valores_datas.append(i["dataCompra"])
-        ingressos.append(i["COUNT(dataCompra)"])
+    if request.method == "GET":
+        db = sqlite3.connect("eze.db")
+        db.row_factory = sqlite3.Row
+        eze = db.cursor()
+        eze.execute("SELECT * FROM promoters WHERE id = ?",
+                    [session["user_id"]])
+        linhas2 = eze.fetchall()
+        eze.execute(
+            "SELECT * FROM lista WHERE fk_promoter = ? ORDER BY idLista DESC", [session["user_id"]])
+        linhas = eze.fetchall()
+        total = len(linhas)
+        eze.execute("SELECT * FROM lista WHERE fk_promoter = ? AND sexo = 'M'", [session["user_id"]])
+        masculino = eze.fetchall()
+        masc = len(masculino)
+        eze.execute("SELECT * FROM lista WHERE fk_promoter = ? AND sexo = 'F'", [session["user_id"]])
+        femi = eze.fetchall()
+        fem = len(femi)
+        
+        eze.execute("SELECT dataCompra , COUNT(dataCompra) FROM lista WHERE fk_promoter = ? GROUP BY dataCompra", [session["user_id"]])
+        datas = eze.fetchall()
+        total_datas = len(datas)
+        valores_datas = []
+        ingressos = []
+        for i in datas:
+            valores_datas.append(i["dataCompra"])
+            ingressos.append(i["COUNT(dataCompra)"])
 
-    return render_template("perfilP.html", user=linhas2, quant=total, vendas=linhas, masc=masc, fem=fem, data=valores_datas, total_datas=total_datas, ingressos=ingressos)
+        return render_template("perfilP.html", user = linhas2, quant = total, vendas = linhas, masc = masc, fem = fem, data = valores_datas, total_datas = total_datas, ingressos = ingressos)
+    else:
+        if request.form["urlPerfil"]:
+            perfil = request.form["urlPerfil"]
+            db = sqlite3.connect("eze.db")
+            db.row_factory = sqlite3.Row
+            eze = db.cursor()
+            eze.execute(f"UPDATE promoters SET urlIMG = '{perfil}' WHERE id = ?", [session["user_id"]])
+            eze.fetchall()
+            db.commit()
+            eze.close()
+            return redirect("/perfil_promoter")
+        else:
+            nome = request.form["nome"]
+            print(nome)
+            db = sqlite3.connect("eze.db")
+            db.row_factory = sqlite3.Row
+            eze = db.cursor()
+            eze.execute(f"UPDATE promoters SET nome = '{nome}' WHERE id = ?", [session["user_id"]])
+            eze.fetchall()
+            db.commit()
+            eze.close()
+            return redirect("/perfil_promoter")
+        # else:
 
-
+    
 # @app.route("/registerOrg", methods=["GET", "POST"])
 # def registrar():
 #     if request.method == "GET":
