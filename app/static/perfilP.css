@@ -4,6 +4,11 @@
     margin: 0;
 }
 
+body{
+    background-color: black;
+    text-align: center;
+}
+
 .p-5 {
     padding: 0rem!important;
 }
@@ -16,6 +21,7 @@
     padding-top: 1%;
     display: flex;
     flex-wrap: wrap;
+    color: white
 }
 
 .pai .img{
@@ -28,7 +34,6 @@
     margin-left: 9%;
     font-size: 50px;
     text-align: center;
-    background-image: url("img/perfil/wallpaper.png");
     background-position: center center;
     background-size: cover;
 }
@@ -96,6 +101,55 @@
     height: 30%;
     width: 100%;
     text-align: center;
+    position: relative;
+}
+
+.info .alterar img{
+    height: 60%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.info .alterar form input{
+    border-radius: 4px;
+    border: 2px solid white;
+    background-color: black;
+    text-align: center;
+    margin-bottom: 2%;
+    color: white;
+}
+
+.info .alterar form button{
+    border-radius: 4px;
+    border: 2px solid white;
+    background-color: black;
+    text-align: center;
+    margin-bottom: 2%;
+    color: white;
+    width: 20%;
+}
+
+.info .alterar span{
+    position: absolute;
+    top: -242%;
+    left: 77%;
+    cursor: pointer;
+    color: white;
+    font-size: 25px;
+    font-weight: 800;
+    display: none;
+}
+
+.info .alterar .AjudaCard{
+    position: absolute;
+    top: -231%;
+    left: 24%;
+    background-color: black;
+    width: 52%!important;
+    display: none;
+    opacity: 0;
+    transition: opacity 1s;
+    box-shadow: 0px 0px 6px 0px white
 }
 
 .info .alterar .editar{
@@ -103,10 +157,34 @@
     width: 60%;
     margin-top: 1%;
     margin-left: 20%;
+    cursor: pointer;
     border: 2px solid white;
     background-color: transparent;
     border-radius: 12px;
+    transition: 1s;
     font-size: 33px;
+    position: relative;
+}
+
+.info .alterar .editar button{
+    width: 33%;
+    height: 80%;
+    text-align: center;
+    font-size: 25px;
+    border-radius: 10px;
+    background-color: transparent;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    color: white;
+}
+
+.info .alterar .editar button:hover{
+    color: red;
+    cursor: pointer;
+}
+
+.info .alterar .editar:hover{
+    background-color: black;
 }
 
 .dash{
