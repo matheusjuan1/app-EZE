@@ -1,0 +1,172 @@
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.p-5 {
+    padding: 0rem!important;
+}
+
+.pai{
+    height: 92vh;
+    width: 100%;
+    margin-bottom: 8vh;
+    background-color: black;
+    padding-top: 1%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pai .img{
+    height: 40%;
+    width: 20%;
+    background-color: black;
+    border: 2px solid white;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    margin-left: 9%;
+    font-size: 50px;
+    text-align: center;
+    background-image: url("img/perfil/wallpaper.png");
+    background-position: center center;
+    background-size: cover;
+}
+
+.pai .img img{
+    height: 65%;
+    width: 62%;
+    margin-top: 3%;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px 0px black;
+}
+
+.info{
+    height: 40%;
+    width: 61.5%;
+    margin-left: 0.5%;
+    display: flex;
+    flex-wrap: wrap;
+    background-image: radial-gradient( circle farthest-corner at 50% 50%, rgb(226, 0, 0) -29%, rgb(0, 0, 0) 96.8% );
+    border: 2px solid white;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.info .dados{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.info .dados .dado1{
+    width: 50%;
+    height: 100%;
+    padding: 2%;
+    text-align: center;
+    border-right: 1px solid white;
+}
+
+.info .dados .dado1 p{
+    width: 100%;
+    height: 50%;
+    margin: 0;
+    margin-top: 10%;
+    font-size: 22px;
+}
+
+.info .dados .dado2{
+    width: 50%;
+    height: 100%;
+    padding: 2%;
+    text-align: center;
+    border-left: 1px solid white;
+}
+
+.info .dados .dado2 p{
+    width: 100%;
+    height: 50%;
+    margin: 0;
+    margin-top: 10%;
+    font-size: 22px;
+}
+
+.info .alterar{
+    height: 30%;
+    width: 100%;
+    text-align: center;
+}
+
+.info .alterar .editar{
+    height: 80%;
+    width: 60%;
+    margin-top: 1%;
+    margin-left: 20%;
+    border: 2px solid white;
+    background-color: transparent;
+    border-radius: 12px;
+    font-size: 33px;
+}
+
+.dash{
+    margin-left: 9%;
+    height: 55%;
+    width: 82%;
+    background-color: black;
+    border: 2px solid white;
+    border-top: none;
+    border-radius: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.dash .grafico1{
+    height: 100%;
+    width: 20%;
+    text-align: center;
+}
+
+.dash .grafico1 p{
+    margin-bottom: 0;
+    height: 10%;
+    width: 100%;
+    font-size: 24px;
+}
+
+.dash .grafico1 .grafico10{
+    height: 90%;
+    width: 100%;
+}
+.dash .grafico1 .grafico10 label{
+    height: 10%;
+    width: 100%;
+    font-size: 21px;
+}
+.dash .grafico1 .grafico10 img{
+    height: 90%;
+    width: 100%;
+}
+
+.dash .grafico2{
+    height: 100%;
+    width: 40%;
+}
+
+.dash .grafico2 .can{
+    /* height: 100%!important;
+    width: 100%!important; */
+}
+
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.dash .grafico3{
+    height: 100%;
+    width: 40%;
+    background-color: brown;
+}

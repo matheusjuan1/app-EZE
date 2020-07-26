@@ -1,0 +1,121 @@
+{% extends "layout1.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="../static/perfilP.css">
+{% endblock %}
+
+{% block title %}
+    {% for linha in promoter %}
+        {{linha["nome"]}}
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+<div class="pai">
+    <div class="img">
+        <img src="../static/img/compras/titoria.jpeg" alt="">
+        Vitoria
+    </div>
+    <div class="info">
+        <div class="dados">
+            <div class="dado1">
+                <p>
+                    34 <br>
+                    Ingressos Vendidos
+                </p>
+            </div>
+            <div class="dado2">
+                <p>
+                    50 <br>
+                    Meta de Vendas
+                </p>
+            </div>
+        </div>
+        <div class="alterar">
+            <div class="editar">
+                Editar Perfil
+            </div>
+        </div>
+    </div>
+    <div class="dash">
+        <div class="grafico1">
+            <p>34/50</p>
+            <div class="grafico10">
+                <label for="copo">Continua que ta Perto</label> <br>
+                <img id="copo" src="../static/img/perfil/copoM.png" alt="">
+            </div>
+        </div>
+        <div class="grafico2">
+            <canvas id="canvas" class="can"></canvas>
+        </div>
+        <div class="grafico3">
+            
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script src="../../utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script>
+    var timeFormat = 'MM/DD/YYYY HH:mm';
+    
+    var config = {
+        type: 'line',
+        data: {
+            labels: [ // Date Objects
+                1,2
+            ],
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(226, 0, 0)',
+                borderColor: 'rgb(226, 0, 0)',
+                fill: false,
+                data: [
+                    50,60
+                ],
+            }, {
+                label: 'My Second dataset',
+                backgroundColor: 'rgb(226, 0, 0)',
+                borderColor: 'rgb(226, 255, 0)',
+                fill: false,
+                data: [
+                    50,60
+                ],
+            }]
+        },
+        options: {
+            title: {
+                text: 'Chart.js Time Scale'
+            },
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    time: {
+                        parser: timeFormat,
+                        // round: 'day'
+                        tooltipFormat: 'll HH:mm'
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date'
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'value'
+                    }
+                }]
+            },
+        }
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById('canvas').getContext('2d');
+        window.myLine = new Chart(ctx, config);
+
+    };
+</script>
+{% endblock %}

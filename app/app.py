@@ -235,9 +235,9 @@ def promoter():
         return redirect("/promoter")
 
 
-@app.route("/del_cliente", methods=["POST"])
+@app.route("/add_cliente", methods=["POST"])
 @login_required
-def del_cliente():
+def add_cliente():
     nome = request.form["nome"]
     sexo = request.form["sexo"]
     lote = request.form["lote"]
@@ -250,6 +250,11 @@ def del_cliente():
             f"INSERT INTO lista (nomeCliente, sexo, Lote, dataCompra, fk_promoter) VALUES (?,?,?,?, '{idPro}')", (nome, sexo, lote, data))
         db.commit()
         return redirect("/promoter")
+
+@app.route("/perfil_promoter", methods=["GET"])
+# @login_required
+def perfil_cliente():
+    return render_template("perfilP.html")
 
 
 # @app.route("/registerOrg", methods=["GET", "POST"])
