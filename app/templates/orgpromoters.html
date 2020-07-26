@@ -1,0 +1,84 @@
+{% extends "layout1.html" %}
+{% block css %}
+<link rel="stylesheet" href="../static/organizador.css">
+{% endblock %}
+
+{% block title %}
+ Promoters
+{% endblock %}
+{% block main %}
+<h1>Promoters</h1>
+<div class="promoters">
+    {% for i in promoters %}
+        <div class="promoter" >
+            <div class="container">
+                <img src="{{i['urlIMG']}}" height="60" alt="">
+                <h5>{{i["nome"]}}</h5>
+                <h6>Vendidos: {{i["count"]}}/50</h6>
+            </div>
+            {% if i["nome"] != 'Raylove' %}
+            <form id="formulario{{i['id']}}" action="/organizador/promoters" method="POST">
+                <input type="hidden" value="{{i['id']}}" name="excluir"></input>
+            </form>
+            <i onclick="mensagem({{i['id']}})" title="Excluir Promoter" class="fas fa-trash-alt"></i>
+            <div style="display: none;" id="div{{i['id']}}">
+                <p>Tem certeza que deseja excluir esse promoter permanentemente?</p>
+                <button onclick="sim({{i['id']}})" class="btn btn-success">Sim</button> <button onclick="nao({{i['id']}})" class="btn btn-danger">Não</button>
+            </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <div class="promoter adicionarp" >
+        <div class="container">
+            <i onclick="aparecer()" class="fas fa-plus-square"></i>
+            <h5>Adicionar promoter</h5>
+        </div>
+    </div>
+</div>
+<div id="formularioadicionar" style="display: none;">
+    <form action="/organizador/promoters" method="POST">
+        <input name="nome" class="form-control" type="text" placeholder="Nome"><br>
+        <input name="email" class="form-control" type="text" placeholder="E-mail"><br>
+        <button name="adicionar" class="btn btn-danger" type="submit">Adicionar</button>
+    </form>
+</div>                
+
+{% endblock %}
+
+{% block img_header %}
+{{organizador[0]["urlIMG"]}}
+{% endblock %}
+
+{% block nome_header %}
+{{organizador[0]["nome"]}}
+{% endblock %}
+
+{% block nav %}
+<li class="nav-item">
+    <a class="nav-link" href="/organizador">Home</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="/organizador/promoters">Promoters</a>
+</li>
+{% endblock %}
+{% block script %}
+<script>
+    function aparecer() {
+        formularioadicionar.style.display = 'block';
+    }
+    function mensagem(entrada) {
+        let nomediv = 'div' + entrada
+        document.getElementById(nomediv).style.display = 'block'
+    }
+
+    function nao(entrada) {
+        let nomediv = 'div' + entrada
+        document.getElementById(nomediv).style.display = 'none'
+    }
+
+    function sim(entrada) {
+        let formulario = 'formulario' + entrada
+        document.getElementById(formulario).submit();
+    }
+</script>
+{% endblock %}
