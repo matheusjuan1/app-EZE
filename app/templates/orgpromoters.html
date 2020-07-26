@@ -38,7 +38,7 @@
 <div id="formularioadicionar" style="display: none;">
     <form action="/organizador/promoters" method="POST">
         <input name="nome" class="form-control" type="text" placeholder="Nome"><br>
-        <input name="email" class="form-control" type="text" placeholder="E-mail"><br>
+        <input name="email" class="form-control" type="email" placeholder="E-mail"><br>
         <button name="adicionar" class="btn btn-danger" type="submit">Adicionar</button>
     </form>
 </div>                
@@ -56,6 +56,9 @@
 {% block nav %}
 <li class="nav-item">
     <a class="nav-link" href="/organizador">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/organizador/geral">Geral</a>
 </li>
 <li class="nav-item active">
     <a class="nav-link" href="/organizador/promoters">Promoters</a>
