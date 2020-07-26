@@ -46,7 +46,7 @@
         {% block body %}{% endblock %}
 
           <nav class="navbar fixed-bottom navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% block perfil %}{% endblock %}">
                 <img src="{% block img_header %}{% endblock %}" height="45" alt="">
                 <span>{% block nome_header %}{% endblock %}</span>
             </a>

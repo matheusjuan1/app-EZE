@@ -182,8 +182,18 @@
     {% endfor %}
 {% endblock %}
 
+{% block perfil %}
+    /perfil_promoter
+{% endblock %}
+
 {% block nome_header %}
     {% for linha in user %}
         {{linha["nome"]}}
     {% endfor %}
+{% endblock %}
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="/promoters">Home</a>
+    </li>
 {% endblock %}
