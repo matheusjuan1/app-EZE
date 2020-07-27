@@ -1,13 +1,232 @@
-{% extends "layout1.html %}
+{% extends "layout1.html" %}
+
+{% block body %}
+
+{% block main %}
+<div>
+    <canvas id="grafico" width="400" height="400"></canvas>
+    <canvas id="grafico2" width="400" height="400"></canvas>
+    <canvas id="grafico3" width="400" height="400"></canvas>
+    <canvas id="grafico4" width="400" height="400"></canvas>
+</div>
+
+{% endblock %}
 
 
-<!-- {% block img_header %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+<script>
+    let masc = '{{masc}}'
+    let fem = '{{fem}}'
+    var config = {
+        type: 'doughnut',
+        data: {
+            labels: ['Mulheres', 'Homens'],
+            datasets: [{
+                label: 'Número de pessoas por genêro',
+                data: [fem, masc],
+                backgroundColor: ['rgba(255, 99, 132, 0.3)', 'rgba(54, 162, 235, 0.3)'],
+                borderColor: ['rgba(255, 99, 132, 1)','rgba(54, 162, 235, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                labels: {
+                    fontColor: 'white'
+                }
+            },
+            responsive: false,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{
+                    display: false
+                }],
+                yAxes: [{
+                    display: false,
+                    ticks: {
+                        min: 0
+                    },
+                }]
+            },
+        }
+    };
+
+    // _________ Gráfico 2 _________
+
+    let qtd = JSON.parse('{{qtdlotes | tojson}}')
+    let lotes = JSON.parse('{{lotes | tojson}}')
+
+    var config2 = {
+        type: 'bar',
+        data: {
+            labels: ['Lote 1', 'Lote 2', 'Lote 3'],
+            datasets: [{
+                label: 'Número de pessoas por Lote',
+                data: [],
+                backgroundColor: ['rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)'],
+                borderColor: ['rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                labels: {
+                    fontColor: 'white'
+                }
+            },
+            responsive: false,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{
+                    display: true
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        min: 0,
+                        stepSize: 1
+                    },
+                }]
+            },
+        }
+    };
+    for(let i = 0; i < 3; i++){
+        config2.data.datasets[0].data.push(qtd[i])
+    }
+    
+    // _________Gráfico 3 ___________
+
+    let data = JSON.parse('{{data | tojson}}')
+    let ingressos = JSON.parse('{{ingressos | tojson}}')
+
+    var config3 = {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Ingressos',
+                data: [],
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderColor: 'rgba(255, 159, 64, 1)',
+                borderWidth: 1,
+                pointBackgroundColor: 'rgba(255, 159, 64, 1)',
+                pointStyle: 'circle',
+                lineTension: 0.4
+            }]
+        },
+        options: {
+				responsive: false,
+				title: {
+					display: true,
+					text: 'Chart.js Line Chart'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Month'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Value'
+						},
+						ticks: {
+							min: 0,
+							stepSize: 1
+						}
+					}]
+				}
+			}
+    };
+    let total_datas = '{{total_datas}}'
+    for(let i = 0; i < total_datas; i++){
+        config3.data.labels.push(data[i])
+        config3.data.datasets[0].data.push(ingressos[i])
+    }  
+    
+    // _______ Gráfico 4 ________
+    let qtdprom = JSON.parse('{{qtdprom | tojson}}')
+    let promoters = JSON.parse('{{promoters | tojson}}')
+
+    var config4 = {
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Promoters',
+                data: [],
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                labels: {
+                    fontColor: 'white'
+                }
+            },
+            responsive: false,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{
+                    display: true
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        min: 0,
+                        stepSize: 1
+                    },
+                }]
+            },
+        }
+    };
+
+    let total_promoters = '{{total_promoters}}'
+    for(let i = 0; i < total_promoters; i++){
+        config4.data.labels.push(promoters[i])
+        config4.data.datasets[0].data.push(qtdprom[i])
+    } 
+
+    window.onload = function () {
+        var ctx = document.getElementById('grafico').getContext('2d');
+        window.myLine = new Chart(ctx, config);
+        var ctx2 = document.getElementById('grafico2').getContext('2d');
+        window.myLine = new Chart(ctx2, config2);
+        var ctx3 = document.getElementById('grafico3').getContext('2d');
+        window.myLine = new Chart(ctx3, config3);
+        var ctx4 = document.getElementById('grafico4').getContext('2d');
+        window.myLine = new Chart(ctx4, config4);
+    };
+
+</script>
+
+{% endblock %}
+
+{% block img_header %}
 {{organizador[0]["urlIMG"]}}
 {% endblock %}
 
 {% block nome_header %}
 {{organizador[0]["nome"]}}
-{% endblock %} -->
+{% endblock %}
 
 {% block nav %}
 <li class="nav-item">

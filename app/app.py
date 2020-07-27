@@ -133,6 +133,7 @@ def organizador():
                 eze.execute(
                     f"INSERT INTO lista (nomeCliente, sexo, Lote, dataCompra, fk_promoter) VALUES (?,?,?,?, '1')", (nome, sexo, lote, data))
                 db.commit()
+                flash("Adicionado com sucesso!")
                 return redirect("/organizador")
 
         else:
@@ -189,7 +190,43 @@ def orgpromoters():
 @app.route("/organizador/geral", methods=["GET", "POST"])
 @login_required
 def geral():
-    return render_template("geral.html")
+    db = sqlite3.connect("eze.db")
+    db.row_factory = sqlite3.Row
+    eze = db.cursor()
+    eze.execute("SELECT * FROM organizador WHERE id = ?",
+                    [session["user_id"]])
+    organizador = eze.fetchall()
+    eze.execute("SELECT * FROM lista WHERE sexo = 'M'")
+    masculino = eze.fetchall()
+    masc = len(masculino)
+    eze.execute("SELECT * FROM lista WHERE sexo = 'F'")
+    feminino = eze.fetchall()
+    fem = len(feminino)
+    eze.execute("SELECT lote, count(idLista) as count FROM lista GROUP BY lote ORDER BY lote")
+    lote = eze.fetchall()
+    qtd_lotes = []
+    lotes = []
+    for i in lote:
+        lotes.append(i["lote"])
+        qtd_lotes.append(i["count"])
+    eze.execute("SELECT dataCompra , COUNT(dataCompra) FROM lista GROUP BY dataCompra ORDER BY dataCompra")
+    datas = eze.fetchall()
+    total_datas = len(datas)
+    valores_datas = []
+    ingressos = []
+    for i in datas:
+        valores_datas.append(i["dataCompra"])
+        ingressos.append(i["COUNT(dataCompra)"]) 
+    eze.execute(
+            "SELECT nome, count(fk_promoter) as count FROM promoters LEFT JOIN lista ON lista.fk_promoter = id GROUP BY id ORDER BY count DESC")
+    promoters = eze.fetchall()
+    total_promoters = len(promoters)
+    qtd_pro = []
+    prom = []
+    for i in promoters:
+        prom.append(i["nome"])
+        qtd_pro.append(i["count"])
+    return render_template("geral.html", organizador=organizador, masc=masc, fem=fem, qtdlotes=qtd_lotes, lotes=lotes, data=valores_datas, total_datas=total_datas, total_promoters=total_promoters, ingressos=ingressos, qtdprom=qtd_pro, promoters=prom)
 
 
 @app.route("/organizador/perfil", methods=["GET", "POST"])
