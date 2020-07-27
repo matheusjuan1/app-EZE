@@ -36,6 +36,7 @@ Session(app)
 
 usuarioAT = []
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -148,7 +149,8 @@ def orgpromoters():
         eze.execute("SELECT * FROM organizador WHERE id = ?",
                     [session["user_id"]])
         organizador = eze.fetchall()
-        eze.execute("SELECT promoters.*, count(fk_promoter) as count FROM promoters LEFT JOIN lista ON lista.fk_promoter = id GROUP BY id ORDER BY nome")
+        eze.execute(
+            "SELECT promoters.*, count(fk_promoter) as count FROM promoters LEFT JOIN lista ON lista.fk_promoter = id GROUP BY id ORDER BY nome")
         promoters = eze.fetchall()
         return render_template("orgpromoters.html", organizador=organizador, promoters=promoters)
     else:
@@ -159,7 +161,8 @@ def orgpromoters():
             hashS = generate_password_hash(senha)
             with sqlite3.connect("eze.db") as db:
                 eze = db.cursor()
-                eze.execute("INSERT INTO promoters (nome, senha, email) VALUES (?,?,?)", (nome, hashS, email))
+                eze.execute(
+                    "INSERT INTO promoters (nome, senha, email) VALUES (?,?,?)", (nome, hashS, email))
                 db.commit()
             flash("Promoter adicionado com sucesso")
             return redirect("/organizador/promoters")
@@ -168,16 +171,27 @@ def orgpromoters():
             db = sqlite3.connect("eze.db")
             db.row_factory = sqlite3.Row
             eze = db.cursor()
+            eze.execute("SELECT * FROM lista WHERE fk_promoter = ?", (idp))
+            nomes = eze.fetchall()
+            if len(nomes) != 0:
+                eze = db.cursor()
+                eze.execute(
+                    f"UPDATE lista SET fk_promoter ='1' WHERE fk_promoter = '{idp}'")
+                db.commit()
             eze.execute(f"DELETE FROM promoters WHERE id = '{idp}'")
             db.commit()
             eze.close()
             flash("Promoter excluído com sucesso")
             return redirect("/organizador/promoters")
-        return redirect("/organizador/promoters")    
+        return redirect("/organizador/promoters")
 
 
+@app.route("/organizador/geral", methods=["GET", "POST"])
+@login_required
+def geral():
+    return render_template("geral.html")
 
-# _________________________________ Rotas Promoters _________________________________________________
+    # _________________________________ Rotas Promoters _________________________________________________
 
 
 @app.route("/login_promoter", methods=["GET", "POST"])
@@ -224,7 +238,7 @@ def promoter():
         idPro = session["user_id"]
         image = request.form["img"]
         print(image)
-        
+
         db = sqlite3.connect("eze.db")
         db.row_factory = sqlite3.Row
         eze = db.cursor()
@@ -317,24 +331,6 @@ def perfil_cliente():
 #             insert = eze.execute("INSERT INTO organizador (nomeOrganizador, senha, urlIMG, email) VALUES (?,?,?,?)", (nome1, hashS, perfilP, email))
 #             db.commit()
 #             return render_template("registrar.html")
-
-
-# @app.route("/register", methods=["GET", "POST"])
-# def registrar():
-#     if request.method == "GET":
-#         return render_template("registrar.html")
-#     else:
-#         nome1 = request.form["nomeP"]
-#         senha = request.form["senhaP"]
-#         email = request.form["emailP"]
-#         perfilP = request.form["urlP"]
-#         hashS = generate_password_hash(senha)
-#         with sqlite3.connect("eze.db") as db:
-#             eze = db.cursor()
-#             insert = eze.execute("INSERT INTO promoters (nomePromoter, senha, urlIMG, emailPromoter) VALUES (?,?,?,?)", (nome1, hashS, perfilP, email))
-#             db.commit()
-#             return render_template("registrar.html")
-#
 
 
 @app.route("/logout")
