@@ -13,7 +13,7 @@
 
     <link rel="shortcut icon" href="../static/img/favicon.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/c8284bd1fb.js" crossorigin="anonymous"></script>
-    
+
     <link rel="stylesheet" href="../static/layout.css">
     {% block head %}{% endblock %}
 
@@ -43,19 +43,17 @@
         </div>
     </nav>
 
-
-    {% if get_flashed_messages() %}
-    <div class="headerL">
-        <div class="alert alert-primary border text-center" role="alert">
-            {{ get_flashed_messages() | join(" ") }}
-        </div>
-    </div>
-    {% endif %}
-
     {% block index %}
 
     <main class="container p-5">
         <div class="mainp">
+            {% if get_flashed_messages() %}
+            <div class="headerL">
+                <div class="alert alert-primary border text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </div>
+            {% endif %}
             {% block main %}{% endblock %}
         </div>
     </main>
@@ -88,8 +86,8 @@
 
 
     setInterval(() => {
-        if (screen.width > 767){
+        if (screen.width > 767) {
             aumentar();
-        }    
+        }
     }, 1);
 </script>

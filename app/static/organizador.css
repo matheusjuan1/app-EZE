@@ -14,21 +14,37 @@ td h1 {
 .promoters {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 5vmin;
-    
+    margin: 0 5vmin; 
+    transition: all .5s;
+}
+
+.container {
+    padding-bottom: 0;
 }
 
 .promoter {
     border: 2px red solid;
     border-radius: 5vmin;
     width: 30vmin;
+    height: 32vmin;
     margin: 1vmin 3vmin;
+    padding-bottom: 2.5vmin;
+    transition: all .5s;
+    overflow: hidden;
+    box-shadow: red 0em 0em 0.65em;
+}
+
+.mensagem {
+    opacity: 0;
+    transition: 1s;
 }
 
 .promoter i {
     font-size: 4vmin;
-    margin-bottom: 3vmin;
+    margin-bottom: .4vmin;
+    margin-top: 1vmin;
     cursor: pointer;
+    transition: 1s;
 }
 
 .promoter i:hover {
@@ -52,6 +68,28 @@ td h1 {
     filter: drop-shadow(0px 0px 5px red);
 }
 
-#formulario {
-    width: 50vmin;
+.formexcluir {
+    opacity: 0;
+    transition: 0.4s;
+}
+
+#formularioadd {
+    display: none;
+    width: 30vmin;
+    margin: 2.5vmin;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+#formularioadd i {
+    font-size: 4.3vmin;
+    float: right;
+}
+
+#formularioadd label {
+    margin-bottom: 0;
+}
+
+#add {
+    transition: 1s;
 }

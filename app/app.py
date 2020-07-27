@@ -150,7 +150,7 @@ def orgpromoters():
                     [session["user_id"]])
         organizador = eze.fetchall()
         eze.execute(
-            "SELECT promoters.*, count(fk_promoter) as count FROM promoters LEFT JOIN lista ON lista.fk_promoter = id GROUP BY id ORDER BY nome")
+            "SELECT promoters.*, count(fk_promoter) as count FROM promoters LEFT JOIN lista ON lista.fk_promoter = id GROUP BY id ORDER BY count DESC")
         promoters = eze.fetchall()
         return render_template("orgpromoters.html", organizador=organizador, promoters=promoters)
     else:
@@ -190,6 +190,13 @@ def orgpromoters():
 @login_required
 def geral():
     return render_template("geral.html")
+
+
+@app.route("/organizador/perfil", methods=["GET", "POST"])
+@login_required
+def perfil_org():
+    return render_template("geral.html")
+
 
     # _________________________________ Rotas Promoters _________________________________________________
 

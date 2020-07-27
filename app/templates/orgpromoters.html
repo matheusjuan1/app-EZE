@@ -4,44 +4,50 @@
 {% endblock %}
 
 {% block title %}
- Promoters
+Promoters
 {% endblock %}
 {% block main %}
 <h1>Promoters</h1>
 <div class="promoters">
     {% for i in promoters %}
-        <div class="promoter" >
-            <div class="container">
-                <img src="{{i['urlIMG']}}" height="60" alt="">
-                <h5>{{i["nome"]}}</h5>
-                <h6>Vendidos: {{i["count"]}}/50</h6>
-            </div>
-            {% if i["nome"] != 'Raylove' %}
-            <form id="formulario{{i['id']}}" action="/organizador/promoters" method="POST">
-                <input type="hidden" value="{{i['id']}}" name="excluir"></input>
-            </form>
-            <i onclick="mensagem({{i['id']}})" title="Excluir Promoter" class="fas fa-trash-alt"></i>
-            <div style="display: none;" id="div{{i['id']}}">
-                <p>Tem certeza que deseja excluir esse promoter permanentemente?</p>
-                <button onclick="sim({{i['id']}})" class="btn btn-success">Sim</button> <button onclick="nao({{i['id']}})" class="btn btn-danger">Não</button>
-            </div>
-            {% endif %}
-        </div>
-    {% endfor %}
-    <div class="promoter adicionarp" >
+    <div id="divint{{i['id']}}" class="promoter">
         <div class="container">
+            <img src="{{i['urlIMG']}}" height="60" alt="">
+            <h5>{{i["nome"]}}</h5>
+            <h6>Vendidos: {{i["count"]}}/50</h6>
+        </div>
+        {% if i["nome"] != 'Raylove' %}
+        <form id="formulario{{i['id']}}" action="/organizador/promoters" method="POST">
+            <input type="hidden" value="{{i['id']}}" name="excluir"></input>
+        </form>
+        <i onclick="mensagem({{i['id']}})" id="lixeira{{i['id']}}" title="Excluir Promoter"
+            class="fas fa-trash-alt"></i>
+        <div class="mensagem" style="display: none;" id="div{{i['id']}}">
+            <p>Tem certeza que deseja excluir esse promoter permanentemente?</p>
+            <button onclick="sim({{i['id']}})" class="btn btn-success">Sim</button> <button onclick="nao({{i['id']}})"
+                class="btn btn-danger">Não</button>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+    <div id="adddiv" class="promoter adicionarp">
+        <div id="add" class="container">
             <i onclick="aparecer()" class="fas fa-plus-square"></i>
             <h5>Adicionar promoter</h5>
         </div>
+        <div id="formularioadd">
+            <i onclick="fechar()" class="far fa-times-circle"></i>
+            <form action="/organizador/promoters" method="POST">
+                <div class="form-group">
+                <label for="">Novo promoter</label>
+                <input required name="nome" class="form-control" type="text" placeholder="Nome"></div>
+                <input required name="email" class="form-control" type="email" placeholder="E-mail"><br>
+                <button name="adicionar" class="btn btn-danger" type="submit">Adicionar</button>
+            </form>
+        </div>
     </div>
 </div>
-<div id="formularioadicionar" style="display: none;">
-    <form action="/organizador/promoters" method="POST">
-        <input name="nome" class="form-control" type="text" placeholder="Nome"><br>
-        <input name="email" class="form-control" type="email" placeholder="E-mail"><br>
-        <button name="adicionar" class="btn btn-danger" type="submit">Adicionar</button>
-    </form>
-</div>                
+
 
 {% endblock %}
 
@@ -67,16 +73,51 @@
 {% block script %}
 <script>
     function aparecer() {
-        formularioadicionar.style.display = 'block';
+        formularioadd.style.display = 'block';
+        adddiv.style.width = '35vmin'
+        adddiv.style.height = '38vmin'
+        add.style.display = 'none';
+        setTimeout(() => {
+            formularioadd.style.opacity = '1'
+            add.style.opacity = '0'
+        }, 1);
     }
+    function fechar() {
+        setTimeout(() => {
+            formularioadd.style.opacity = '0'
+            add.style.opacity = '1'
+        }, 1);
+        formularioadd.style.display = 'none';
+        adddiv.style.width = '30vmin'
+        adddiv.style.height = '30vmin'
+        add.style.display = 'block';
+        
+    }
+
     function mensagem(entrada) {
         let nomediv = 'div' + entrada
+        let nomelix = 'lixeira' + entrada
+        let divint = 'divint' + entrada
+        setTimeout(() => {
+            document.getElementById(nomediv).style.opacity = '1'
+            document.getElementById(nomelix).style.display = '0'
+        }, 50);
         document.getElementById(nomediv).style.display = 'block'
+        document.getElementById(nomelix).style.display = 'none'
+        document.getElementById(divint).style.height = '45vmin';  
     }
 
     function nao(entrada) {
         let nomediv = 'div' + entrada
-        document.getElementById(nomediv).style.display = 'none'
+        let nomelix = 'lixeira' + entrada
+        let divint = 'divint' + entrada
+        document.getElementById(nomelix).style.display = 'block'
+        setTimeout(() => {
+            document.getElementById(nomediv).style.opacity = '0'
+            document.getElementById(nomelix).style.opacity = '1'
+        }, 1);
+        document.getElementById(divint).style.height = '30vmin';
+        document.getElementById(nomediv).style.display = 'none'   
     }
 
     function sim(entrada) {
