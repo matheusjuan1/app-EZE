@@ -232,8 +232,40 @@ def geral():
 @app.route("/organizador/perfil", methods=["GET", "POST"])
 @login_required
 def perfil_org():
-    return render_template("geral.html")
+    if request.method == "GET":
+        db = sqlite3.connect("eze.db")
+        db.row_factory = sqlite3.Row
+        eze = db.cursor()
+        eze.execute("SELECT * FROM organizador WHERE id = ?", [session["user_id"]])
+        linhas = eze.fetchall()
+        return render_template("organizadorP.html", linhas = linhas)
+    else:
+        db = sqlite3.connect("eze.db")
+        db.row_factory = sqlite3.Row
+        eze = db.cursor()
+        if 'senha' in request.form:
+            senha = request.form["senha"]
+            hashS = generate_password_hash(senha)
+            eze.execute(f"UPDATE organizador SET senha = '{hashS}'  WHERE id = {session['user_id']}")
+            eze.fetchall()
+            db.commit()
+            eze.close()
 
+        if 'nome' in request.form:
+            nome = request.form["nome"]
+            eze.execute(f"UPDATE organizador SET nome = '{nome}' WHERE id = {session['user_id']}")
+            eze.fetchall()
+            db.commit()     
+            eze.close()
+
+        if 'url' in request.form:
+            url = request.form["url"]
+            eze.execute(f"UPDATE organizador SET urlIMG = '{url}' WHERE id = {session['user_id']}")
+            eze.fetchall()
+            db.commit()
+            eze.close()  
+            
+        return redirect("/organizador/perfil")
 
     # _________________________________ Rotas Promoters _________________________________________________
 
