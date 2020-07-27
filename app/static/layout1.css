@@ -5,6 +5,16 @@ body {
     text-align: center;
 }
 
+::-webkit-scrollbar{
+    width: 7px
+}
+::-webkit-scrollbar-track{
+    background-color: #232323;
+}
+::-webkit-scrollbar-thumb{
+    background-color: white;
+}
+
 .logoeze {
     margin-top: 4.5vmin;
     height: 14vmin;

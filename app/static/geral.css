@@ -1,0 +1,38 @@
+body {
+    background-color: #181818;
+}
+
+.graficos {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+canvas {
+    border: 2px solid white;
+    padding: 3vmin 0;
+    border-radius: 2vmin;
+}
+
+.gra {
+    width: 50%
+}
+
+.cima  {
+    margin-top: 4vmin;
+}
+
+.meio {
+    margin-top: 5vmin;
+    width: 100%;
+}
+
+.baixo {
+    margin-top: 5vmin;
+    width: 100%;
+}
+
+@media (max-width: 991px){
+    .gra {
+        width: 100%;
+    }
+}
