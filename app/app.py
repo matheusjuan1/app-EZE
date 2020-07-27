@@ -256,7 +256,6 @@ def add_cliente():
 @app.route("/perfil_promoter", methods=["GET", "POST"])
 @login_required
 def perfil_cliente():
-
     if request.method == "GET":
         db = sqlite3.connect("eze.db")
         db.row_factory = sqlite3.Row
@@ -283,31 +282,24 @@ def perfil_cliente():
         for i in datas:
             valores_datas.append(i["dataCompra"])
             ingressos.append(i["COUNT(dataCompra)"])
-
         return render_template("perfilP.html", user = linhas2, quant = total, vendas = linhas, masc = masc, fem = fem, data = valores_datas, total_datas = total_datas, ingressos = ingressos)
-    else:
-        if request.form["urlPerfil"]:
-            perfil = request.form["urlPerfil"]
-            db = sqlite3.connect("eze.db")
-            db.row_factory = sqlite3.Row
-            eze = db.cursor()
-            eze.execute(f"UPDATE promoters SET urlIMG = '{perfil}' WHERE id = ?", [session["user_id"]])
-            eze.fetchall()
-            db.commit()
-            eze.close()
-            return redirect("/perfil_promoter")
-        else:
+    else: 
+        db = sqlite3.connect("eze.db")
+        db.row_factory = sqlite3.Row
+        eze = db.cursor()
+        if 'nome' in request.form:
             nome = request.form["nome"]
-            print(nome)
-            db = sqlite3.connect("eze.db")
-            db.row_factory = sqlite3.Row
-            eze = db.cursor()
             eze.execute(f"UPDATE promoters SET nome = '{nome}' WHERE id = ?", [session["user_id"]])
-            eze.fetchall()
-            db.commit()
-            eze.close()
-            return redirect("/perfil_promoter")
-        # else:
+        elif 'urlPerfil' in request.form:
+            perfil = request.form["urlPerfil"]
+            eze.execute(f"UPDATE promoters SET urlIMG = '{perfil}' WHERE id = ?", [session["user_id"]])
+        else:
+            capa = request.form["urlCapa"]
+            eze.execute(f"UPDATE promoters SET urlcapa = '{capa}' WHERE id = ?", [session["user_id"]])
+        eze.fetchall()
+        db.commit()
+        eze.close()
+        return redirect("/perfil_promoter")
 
     
 # @app.route("/registerOrg", methods=["GET", "POST"])
