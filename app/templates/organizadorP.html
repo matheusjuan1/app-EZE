@@ -1,0 +1,112 @@
+{% extends "layout1.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="../static/organizadorP.css">
+{% endblock %}
+
+{% block title %}
+    {{linhas[0]["nome"]}}
+{% endblock %}
+
+{% block main %}
+
+<div class="capaOrg">
+    <img src="{{linhas[0]['urlIMG']}}" alt="">
+    <br>
+    <h1>{{linhas[0]["nome"]}}</h1>
+    <br>
+    <div class="editar">
+        <span onclick="trocar()" id="span">Editar Dados <i class="fas fa-user-edit"></i></span>
+        <div class="aparecer" id="aparecer">
+            <div class="card card_editar" id="card">
+                <img src="../static/img/perfil/exemplo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" id="titulo_card">Troque suas Informações</h5>
+                    <p class="card-text" id="text_card">Cole o endereço da imagem aqui.</p>
+                    <form action="/organizador/perfil" method="POST" id="form1">
+                        <input type="text" placeholder="URL" name="url" autofocus id="inputPerfil"> <br>
+                        <hr>
+                        <p class="card-text" id="text_card">Informe o nome que deseja</p>
+                        <input type="text" placeholder="Nome" name="nome" autofocus id="inputNome"> <br>
+                        <hr>
+                        <p class="card-text" id="text_card">Informe a nova senha</p>
+                        <input type="text" placeholder="Senha" name="senha" autofocus id="inputSenha"> <br>
+                        <hr>
+                        <button onclick="verificar()">Trocar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    setInterval(() => {
+       if(screen.width <= 1200 && screen.width > 1000){
+            card.style.width = '45%';
+            card.style.marginLeft = '27.5%';
+       } 
+       else if(screen.width <= 1000 && screen.width > 770){
+            card.style.width = '60%';
+            card.style.marginLeft = '20%';
+       }
+       else if(screen.width <= 770){
+            card.style.width = '80%';
+            card.style.marginLeft = '10%';
+       }
+    }, 1);
+
+    function trocar(){
+        span.className = 'active'
+        span.innerHTML = 'Fechar'
+        span.setAttribute('onclick', 'fechar()')
+        card.style.opacity = '1';
+        aparecer.style.height = '672px'; 
+        setTimeout(() => {
+            window.location.href = '#aparecer' 
+        }, 1000);
+    }
+
+    function fechar(){
+        span.className = ''
+        span.innerHTML = 'Editar Dados <i class="fas fa-user-edit"></i>'
+        span.setAttribute('onclick', 'trocar()')
+        card.style.opacity = '0';
+        aparecer.style.height = '0px';         
+    }
+
+    function verificar(){
+        if(inputPerfil.value == ''){
+            inputPerfil.name = ''
+        }
+        if(inputNome.value == ''){
+            inputNome.name = ''
+        }
+        if(inputSenha.value == ''){
+            inputSenha.name = ''
+        }
+        form1.submit()
+    }
+</script>
+{% endblock %}
+
+{% block img_header %}
+{{linhas[0]["urlIMG"]}}
+{% endblock %}
+
+{% block nome_header %}
+{{linhas[0]["nome"]}}
+{% endblock %}
+
+{% block nav %}
+<li class="nav-item">
+    <a class="nav-link" href="/organizador">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/organizador/geral">Geral</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/organizador/promoters">Promoters</a>
+</li>
+{% endblock %}
