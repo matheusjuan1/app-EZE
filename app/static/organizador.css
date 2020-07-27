@@ -47,6 +47,23 @@ td h1 {
     box-shadow: red 0em 0em 0.65em;
 }
 
+.promoter h5 {
+    font-size: 2.9vmin;
+    margin-top: 1vmin;
+}
+
+.promoter h6 {
+    font-size: 2.3vmin;
+}
+
+.promoter img {
+    height: 10vmin;
+}
+
+.titulo {
+    font-size: 6vmin;
+}
+
 .mensagem {
     opacity: 0;
     transition: 1s;
@@ -105,4 +122,10 @@ td h1 {
 
 #add {
     transition: 1s;
+}
+
+@media (max-width: 767px){
+    .promoter {
+        margin-left: 27.5%;
+    }
 }

@@ -13,6 +13,10 @@ canvas {
     border-radius: 2vmin;
 }
 
+h1 {
+    font-size: 5vmin;
+}
+
 .gra {
     width: 50%
 }
