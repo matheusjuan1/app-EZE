@@ -7,12 +7,12 @@
 Promoters
 {% endblock %}
 {% block main %}
-<h1>Promoters</h1>
+<h1 class="titulo">Promoters</h1>
 <div class="promoters">
     {% for i in promoters %}
     <div id="divint{{i['id']}}" class="promoter">
         <div class="container">
-            <img src="{{i['urlIMG']}}" height="60" alt="">
+            <img src="{{i['urlIMG']}}" alt="">
             <h5>{{i["nome"]}}</h5>
             <h6>Vendidos: {{i["count"]}}/50</h6>
         </div>

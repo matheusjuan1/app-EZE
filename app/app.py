@@ -7,6 +7,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
+from datetime import date
 import json
 
 from helpers import apology, login_required
@@ -126,7 +127,7 @@ def organizador():
             nome = request.form["nome"]
             sexo = request.form["sexo"]
             lote = request.form["lote"]
-            data = request.form["data"]
+            data = date.today()
 
             with sqlite3.connect("eze.db") as db:
                 eze = db.cursor()
@@ -208,7 +209,9 @@ def geral():
     lotes = []
     for i in lote:
         lotes.append(i["lote"])
-        qtd_lotes.append(i["count"])
+        qtd_lotes.append(i["count"])    
+    total = round((qtd_lotes[0] * 15) + (qtd_lotes[1] * 20) + (qtd_lotes[2] * 25), 2)
+
     eze.execute("SELECT dataCompra , COUNT(dataCompra) FROM lista GROUP BY dataCompra ORDER BY dataCompra")
     datas = eze.fetchall()
     total_datas = len(datas)
@@ -226,7 +229,10 @@ def geral():
     for i in promoters:
         prom.append(i["nome"])
         qtd_pro.append(i["count"])
-    return render_template("geral.html", organizador=organizador, masc=masc, fem=fem, qtdlotes=qtd_lotes, lotes=lotes, data=valores_datas, total_datas=total_datas, total_promoters=total_promoters, ingressos=ingressos, qtdprom=qtd_pro, promoters=prom)
+    eze.execute("SELECT Count(idLista) as count FROM lista")
+    contagem = eze.fetchall()
+
+    return render_template("geral.html", organizador=organizador, masc=masc, fem=fem, qtdlotes=qtd_lotes, lotes=lotes, data=valores_datas, total_datas=total_datas, total_promoters=total_promoters, ingressos=ingressos, qtdprom=qtd_pro, promoters=prom, totalarrecadado=total, contagem=contagem)
 
 
 @app.route("/organizador/perfil", methods=["GET", "POST"])
@@ -238,7 +244,7 @@ def perfil_org():
         eze = db.cursor()
         eze.execute("SELECT * FROM organizador WHERE id = ?", [session["user_id"]])
         linhas = eze.fetchall()
-        return render_template("organizadorP.html", linhas = linhas)
+        return render_template("perfilO.html", linhas = linhas)
     else:
         db = sqlite3.connect("eze.db")
         db.row_factory = sqlite3.Row
@@ -330,7 +336,7 @@ def add_cliente():
     nome = request.form["nome"]
     sexo = request.form["sexo"]
     lote = request.form["lote"]
-    data = request.form["data"]
+    data = date.today()
     idPro = session["user_id"]
 
     with sqlite3.connect("eze.db") as db:
