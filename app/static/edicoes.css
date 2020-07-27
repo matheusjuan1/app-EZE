@@ -4,6 +4,17 @@
     width: 100%;
 }
 
+#edicao2{
+    opacity: 0;
+    transition: all 1s;
+    margin-top: 5%;
+}
+#edicao3{
+    opacity: 0;
+    transition: all 1s;
+    margin-top: 5%;
+}
+
 .parte_texto {
     float: left;
     width: 70vmin;

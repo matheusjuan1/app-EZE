@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block main %}
-<div class="edicao">
+<div class="edicao" id="edicao1">
     <div class="parte_texto">
         <h1 class="textoedicoes"><i>edições</i></h1>
         <div class="texto1">
@@ -25,7 +25,7 @@
         <div class="edicao1"><img src="../static/img/edições eze/ezeclean.jpg" alt=""></div>
     </div>
 </div>
-<div class="edicao">
+<div class="edicao" id="edicao2">
     <div class="parte_texto">
         <div class="texto2">
             <img src="../static/img/logoeze2.png" alt="">
@@ -39,7 +39,7 @@
         <div class="edicao2"><img src="../static/img/edições eze/eze2.png" alt=""></div>
     </div>
 </div>
-<div class="edicao">
+<div class="edicao" id="edicao3">
     <div class="parte_texto">
         <div class="texto2">
             <img src="../static/img/Ativo 1.png" alt="">
@@ -55,4 +55,38 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<script>
+
+// let item1 = edicao3.getBoundingClientRect();
+// console.log(item1)
+
+function subir2(){
+    let sy = window.scrollY
+    let altura = $("#edicao2").offset().top
+
+    if(sy > (altura - 500)){
+        edicao2.style.opacity = '1';
+        edicao2.style.marginTop = '0%';
+    }
+    else{
+        edicao2.style.opacity = '0';
+        edicao2.style.marginTop = '5%';
+    }
+
+    let altura2 = $("#edicao3").offset().top
+
+    if(sy > (altura2 - 500)){
+        edicao3.style.opacity = '1';
+        edicao3.style.marginTop = '0%';
+    }
+    else{
+        edicao3.style.opacity = '0';
+        edicao3.style.marginTop = '5%';
+    }
+}
+window.onscroll = subir2;
+
+</script>
 {% endblock %}
