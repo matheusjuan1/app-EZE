@@ -234,11 +234,8 @@ def promoter():
     else:
         nome = request.form["nome"]
         sexo = request.form["sexo"]
-        select = request.form["SC"]
-        idPro = session["user_id"]
-        image = request.form["img"]
-        print(image)
-
+        select = request.form["editar"]
+                
         db = sqlite3.connect("eze.db")
         db.row_factory = sqlite3.Row
         eze = db.cursor()

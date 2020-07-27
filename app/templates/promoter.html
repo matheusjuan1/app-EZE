@@ -1,13 +1,9 @@
 {% extends "layout1.html" %}
 
 {% block css %}
-    <link rel="stylesheet" href="../static/promoter.css">
+    <link rel="stylesheet" href="../static/organizador.css">
 {% endblock %}
 
-<script src="https://kit.fontawesome.com/c8284bd1fb.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 {% block title %}
     {% for linha in promoter %}
@@ -20,20 +16,40 @@
     <thead>
         <tr>
             <th scope="col">Nome</th>
-            <th scope="col">Editar Usuário</th>
-            <th scope="col">Data da Compra</th>
             <th scope="col">Sexo</th>
             <th scope="col">Lote</th>
+            <th scope="col">Data da Compra</th>
+            <th scope="col">Editar Usuário</th>
         </tr>
     </thead>
     <tbody>
         {% for i in banco %}
         <tr>
             <td>{{i["nomeCliente"]}}</td>
-            <td><a href="#acoes"><i class="fas fa-undo-alt"></i></a></td>
-            <td>{{i["dataCompra"]}}</td>
             <td>{{i["sexo"]}}</td>
             <td>{{i["Lote"]}}</td>
+            <td>{{i["dataCompra"]}}</td>
+            <td>
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" style="color: white;" aria-expanded="false">Editar</a>
+                <div class="dropdown-menu">
+                    <h6 class="dropdown-header">{{i["nomeCliente"]}}</h6>
+                    <div class="dropdown-divider"></div>
+                    <form action="/promoter" method="POST" class="px-4 py-3">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" name="nome" class="form-control" id="nome" placeholder="Novo Nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Sexo</label><br>
+                            <input value="M" type="radio" name="sexo" id="m"> <label for="m">Masculino</label><br>
+                            <input value="F" type="radio" name="sexo" id="f"> <label for="f">Feminino</label>
+                        </div>
+                        <button value="{{i['idLista']}}" name="editar" type="submit"
+                            class="btn btn-danger">Editar</button>
+                    </form>
+                </div>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
@@ -49,111 +65,31 @@
 </table>
 <br>
 
-<div class="alert alert-dark" role="alert" id="alerta">
-    A simple dark alert—check it out!
-</div>
-<br>
-
-<div class="acoes" id="acoes">
-    <div class="icone1" id="icone1">
-        <i class="fas fa-undo-alt" onclick="alterarCliente()"></i><br>
-        Alterar Cliente
-    </div>
-    
-    <div class="form1" id="form1">
-
-        <label for="formulario1">Trocar Usuário:</label><br>
-        <form id="fomulario1" action="/promoter" method="POST">
-            <select name="SC" id="">
-                {% for i in banco %}
-                    <option value="{{i['idLista']}}">{{i["nomeCliente"]}}</option>
-                {% endfor %}
+<div class="adicionar">
+    <h1>Adicionar Nome:</h1>
+    <form action="/add_cliente" method="POST">
+        <div class="form-group">
+            <input name="nome" type="text" class="form-control" id="" placeholder="Nome">
+        </div>
+        <div class="form-group">
+            <label for="">Sexo</label><br>
+            <input value="M" type="radio" name="sexo" id="m"> <label for="m">Masculino</label><br>
+            <input value="F" type="radio" name="sexo" id="f"> <label for="f">Feminino</label>
+        </div>
+        <div class="form-group">
+            <label for="">Lote</label>
+            <select name="lote" class="form-control" id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
             </select>
-            <br>
-            <input tabindex="1" name="nome" autofocus placeholder="nome" class="inpuP" id="nome"><br>
-            Sexo: <br> Masculino <input value="M" tabindex="2" name="sexo" type="checkbox" id="masc">
-                       Feminino <input value="F" tabindex="2" name="sexo" type="checkbox" id="fem">
-            <br>
-        </form>
-        <button class="btn btn-danger btnIndex" tabindex="3" onclick="verificar()">Trocar</button>
-
-        <span onclick="fechar_alterarCliente()">X</span>
-    </div>
-
-    <div class="icone2" id="icone2">
-        <i class="fas fa-plus-square" onclick="addCliente()"></i> <br>
-        Adicionar Cliente
-    </div>
-
-    <div class="form2" id="form2">
-
-        <label for="formulario2">Adicionar Usuário:</label><br>
-        <form id="fomulario2" action="/add_cliente" method="POST">
-            <input tabindex="4" name="nome" autofocus placeholder="nome" class="inpuP" id="nome2"><br>
-            Sexo: <br> Masculino <input value="M" tabindex="5" name="sexo" type="checkbox" id="masc2"> Feminino <input value="F"
-                tabindex="6" name="sexo" type="checkbox" id="fem2"><br>
-            <input tabindex="7" name="lote" autofocus placeholder="lote"  class="inpuP" id="lote"><br>
-            <input tabindex="8" name="data" autofocus placeholder="AAAA-MM-DD"  class="inpuP" id="data"><br>
-        </form>
-        <button class="btn btn-danger btnIndex" tabindex="9" onclick="verificar2()">Adicionar</button>
-        
-        <span onclick="fechar_addCliente()">X</span>
-    </div>
+        </div>
+        <div class="form-group">
+            <input name="data" placeholder="AAAA-MM-DD" class="form-control" type="text">
+        </div>
+        <button name="adicionar" type="submit" class="btn btn-danger">Adicionar</button>
+    </form>
 </div>
-
-<script>
-    function addCliente(){
-        if (screen.width <= 767){
-            form2.style.left = '5%';
-        }
-        else{
-            form2.style.left = '56%';
-        }
-        icone2.style.opacity = '0';
-    }
-    function alterarCliente(){
-        form1.style.left = '6%';
-        icone1.style.opacity = '0'
-    }
-    function fechar_addCliente(){
-        form2.style.left = '130%';
-        icone2.style.opacity = '1';
-    }
-    function fechar_alterarCliente(){
-        if (screen.width <= 767){
-            form1.style.left = '-100%';
-        }
-        else{
-            form1.style.left = '-60%';
-        }
-        icone1.style.opacity = '1'
-    }
-
-    function verificar(){
-        if (nome.value == '' || (masc.checked && fem.checked) || (!masc.checked && !fem.checked)){
-            alerta.innerHTML = `Por favor, informe todos os campos corretamente.`
-            alerta.style.display = 'block'
-            setTimeout(() => {
-                alerta.style.opacity = '1'
-            }, 50);
-        }
-        else{
-            fomulario1.submit()
-        }
-    }
-    function verificar2(){
-        if (nome2.value == '' || (masc2.checked && fem2.checked) || (!masc2.checked && !fem2.checked) || lote.value == '' || data.value == ''){
-            alerta.innerHTML = `Por favor, informe todos os campos corretamente.`
-            alerta.style.display = 'block'
-            setTimeout(() => {
-                alerta.style.opacity = '1'
-            }, 50);
-        }
-        else{
-            fomulario2.submit()
-        }
-    }
-</script>
 {% endblock %}
 
 
