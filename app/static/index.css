@@ -43,7 +43,7 @@ body{
 
 .imgLogo{
     margin-top: 10%;
-    height: 49%;
+    height: 49vmin;
     filter: drop-shadow(0px 0px 15px red);
     animation: sombra 5s linear infinite;  
 }
@@ -124,7 +124,7 @@ body{
 .contagem{
     height: 20vh;
     width: 100%;
-    font-size: 43px;
+    font-size: 250%;
     color: white;
     filter: drop-shadow(4px 8px 7px red);
     padding-left: 20px;
@@ -201,7 +201,8 @@ body{
 }
 
 .paiContagem img{
-    height: 42%;
+    height: 30vmin;
+    width: 70vmin;
     margin-top: 4%;
 }
 
@@ -294,6 +295,13 @@ footer{
         width: 35%;
     }
 }
+
+@media (max-width: 768px){
+    .imgLogo{
+        margin-top: 40%;
+    }
+}
+
 @media (max-width: 931px){
     .paiContagem img {
         display: none;
@@ -371,17 +379,18 @@ footer{
     }
     .imgLogo {
         margin-top: 46%;
-        height: 29%;   
+        /* height: 29%;    */
     }
 }
 @media (max-width: 580px){
     .imgLogo {
         margin-top: 46%;
-        height: 29%;   
+        /* height: 29%;    */
     }
 
-    .contagem{
-        font-size: 35px;
+    .contagem {
+        font-size: 200%;
+        margin-bottom: 5%;
     }
 
     .btnAvisos{
@@ -394,8 +403,9 @@ footer{
         font-size: 13px;
     }
 
-    .paiContagem{
+    .paiContagem {
         height: 30vh;
+        margin-bottom: 11%;
     }
 
     .avisosIndex{
@@ -456,7 +466,7 @@ footer{
 
     .imgLogo {
         margin-top: 62%;
-        height: 20%;
+        /* height: 20%; */
     }
 
     .btnIndex {
@@ -468,5 +478,14 @@ footer{
 
     .contagem::after, .contagem::before{
         display: none
+    }
+}
+
+@media (max-width: 320px){
+    .btnAvisos {
+        height: 22%;
+    }
+    .contagem {
+        margin-bottom: 10%;
     }
 }

@@ -55,7 +55,7 @@ body{
 
 .lotes h1{
     padding-top: 7%;
-    font-size: 55px;
+    font-size: 5vmin;
     font-weight: 600
 }
 
@@ -84,7 +84,7 @@ a:hover{
 }
 
 .blur span{
-    font-size: 25px;
+    font-size: 4vmin;
 }
 
 .promoters{
@@ -190,19 +190,19 @@ a:hover{
         font-size: 22px;
     }
     
-    .lotes h1 {
+    /* .lotes h1 {
         margin-bottom: 40%;
-    }
+    } */
     
     .blur button {
-        margin-top: 0%;
+        margin-top: 30vmin;
     }
 }
 
 @media (max-width: 1194px){
-    .lotes h1 {
+    /* .lotes h1 {
         margin-bottom: 80%;
-    }
+    } */
 }
 
 /* responsividade dos lotes */
@@ -218,11 +218,13 @@ a:hover{
         padding-top: 10%;
         margin-top: 3%;
     }
-    .lotes h1 {
-        margin-bottom: 55%;
+
+    .blur button {
+        margin-top: 1vmin;
     }
-    .blur span {
-        font-size: 35px;
+
+    .lotes h1 {
+        margin-bottom: 50vmin;
     }
 }
 @media (max-width: 850px){
@@ -244,12 +246,9 @@ a:hover{
     .lotes{
         height: 55%;
     }
-    .blur span {
-        font-size: 25px;
-    }
-    .lotes h1 {
+    /* .lotes h1 {
         margin-bottom: 42%;
-    }
+    } */
     .containerComprar{
         padding-top: 16%;
     }
@@ -282,16 +281,16 @@ a:hover{
 }
 
 @media (max-width: 590px){
-    .lotes h1 {
+    /* .lotes h1 {
         margin-bottom: 57%;
-    }
+    } */
 }
 
 @media (max-width: 470px){
-    .lotes h1 {
+    /* .lotes h1 {
         margin-bottom: 65%;
         font-size: 43px;
-    }
+    } */
     .containerComprar {
         padding-top: 22%;
         padding-bottom: 6%;
@@ -320,10 +319,15 @@ a:hover{
     }
 }
 
-@media (max-width: 400px){
+@media (max-width: 414px){
     .lotes h1 {
-        margin-bottom: 51%;
-        font-size: 43px;
+        margin-bottom: 43vmin;
+    }
+
+    @media (height: 823px){
+        .lotes h1 {
+            margin-bottom: 50vmin;
+        }
     }
     .containerComprar {
         padding-top: 22%;
@@ -338,8 +342,20 @@ a:hover{
         margin-top: 10%;
     }
 }
-@media (max-width: 375px){
+
+@media (max-width: 380px){
     .lotes h1 {
-        margin-bottom: 59%;
+        margin-bottom: 40vmin;
+    }
+    @media (height: 812px){
+        .lotes h1 {
+            margin-bottom: 52vmin;
+        } 
+    }
+}
+
+@media (max-width: 360px){
+    .lotes h1 {
+        margin-bottom: 39vmin;
     }
 }

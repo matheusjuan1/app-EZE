@@ -51,7 +51,7 @@
     </div>
     <div class="parte_flyer">
         <h1 class="ano three">202?</h1>
-        <div class="edicao3"><img src="../static/img/edições eze/eze3.png" alt=""></div>
+        <div class="edicao3" onmouseover="mostrar()" id="imgEdicao3"><img src="../static/img/edições eze/eze3.png" alt="" id="img"><span onmouseover="mostrar()" id="breve">EM BREVE</span></div>
     </div>
 </div>
 
@@ -59,8 +59,23 @@
 
 <script>
 
-// let item1 = edicao3.getBoundingClientRect();
-// console.log(item1)
+function mostrar(){
+    breve.style.opacity = '1';
+    imgEdicao3.setAttribute('onmouseover', '')
+    imgEdicao3.setAttribute('onmouseout', 'apagarmsg()')
+    img.style.opacity = '0.3'
+    breve.setAttribute('onmouseover', '')
+    breve.setAttribute('onmouseout', 'apagarmsg()')
+}
+
+function apagarmsg(){
+    img.style.opacity = '1'
+    breve.style.opacity = '0';
+    imgEdicao3.setAttribute('onmouseover', 'mostrar()')
+    imgEdicao3.setAttribute('onmouseout', '')
+    breve.setAttribute('onmouseover', 'mostrar()')
+    breve.setAttribute('onmouseout', '')
+}
 
 function subir2(){
     let sy = window.scrollY
@@ -87,6 +102,8 @@ function subir2(){
     }
 }
 window.onscroll = subir2;
+subir2()
+
 
 </script>
 {% endblock %}

@@ -16,7 +16,7 @@
 <div class="pai">
     {% for i in user %}
     <div class="img" style="background-image: url({{i['urlcapa']}});">
-        <img src="{{i['urlIMG']}}" alt="">
+        <img src="{{i['urlIMG']}}" alt=""> <br>
         {{i["nome"]}}
         {% endfor %}
     </div>
