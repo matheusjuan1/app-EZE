@@ -78,8 +78,8 @@ Promoters
 <script>
     function aparecer() {
         formularioadd.style.display = 'block';
-        adddiv.style.width = '35vmin'
-        adddiv.style.height = '38vmin'
+        adddiv.style.width = '36vmin'
+        adddiv.style.height = '35%'
         add.style.display = 'none';
         setTimeout(() => {
             formularioadd.style.opacity = '1'
@@ -92,8 +92,13 @@ Promoters
             add.style.opacity = '1'
         }, 1);
         formularioadd.style.display = 'none';
-        adddiv.style.width = '30vmin'
-        adddiv.style.height = '30vmin'
+        if(screen.width <= 972){
+            adddiv.style.width = '60vmin'
+        }
+        else{
+            adddiv.style.width = '32vmin'
+        }
+        adddiv.style.height = '32vmin'
         add.style.display = 'block';
         
     }
@@ -108,7 +113,24 @@ Promoters
         }, 50);
         document.getElementById(nomediv).style.display = 'block'
         document.getElementById(nomelix).style.display = 'none'
-        document.getElementById(divint).style.height = '45vmin';  
+        if(screen.width <= 382){
+            document.getElementById(divint).style.height = '62vmin';
+        }
+        else if(screen.width <= 438){
+            document.getElementById(divint).style.height = '58vmin';
+        }
+        else if(screen.width <= 443){
+            document.getElementById(divint).style.height = '52vmin';
+        }
+        else if (screen.width <= 535){
+            document.getElementById(divint).style.height = '46vmin';
+        }
+        else if (screen.width <= 555){
+            document.getElementById(divint).style.height = '50vmin';
+        }
+        else{
+            document.getElementById(divint).style.height = '45vmin';
+        }  
     }
 
     function nao(entrada) {
@@ -120,7 +142,7 @@ Promoters
             document.getElementById(nomediv).style.opacity = '0'
             document.getElementById(nomelix).style.opacity = '1'
         }, 1);
-        document.getElementById(divint).style.height = '30vmin';
+        document.getElementById(divint).style.height = '33vmin';
         document.getElementById(nomediv).style.display = 'none'   
     }
 

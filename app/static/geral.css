@@ -11,6 +11,7 @@ canvas {
     border: 2px solid white;
     padding: 3vmin 0;
     border-radius: 2vmin;
+    transition: transform 1s;
 }
 
 hr {
@@ -49,5 +50,11 @@ h1 {
 @media (max-width: 991px){
     .gra {
         width: 100%;
+    }
+}
+
+@media (max-width: 466px){
+    canvas:hover{
+        transform: scale(1.28)
     }
 }

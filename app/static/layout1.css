@@ -38,12 +38,12 @@ nav {
 
 footer {
     color: white;
-    display: none;
+    display: none!important;
 }
 
-main {
+.container {
     text-align: center;
-    overflow-x: auto;
+    /* overflow-x: auto; */
 }
 
 table {
@@ -80,7 +80,7 @@ table {
 
 @media (max-width: 991px) {
     footer {
-        display: block;
+        display: block!important;
     }
     .navbar button{
         width: 10%;

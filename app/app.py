@@ -309,7 +309,7 @@ def promoter():
                     [session["user_id"]])
         linhas2 = eze.fetchall()
         eze.execute(
-            "SELECT * FROM lista WHERE fk_promoter = ? ORDER BY idLista DESC", [session["user_id"]])
+            "SELECT * FROM lista WHERE fk_promoter = ? ORDER BY lote, idLista DESC", [session["user_id"]])
         linhas = eze.fetchall()
         total = len(linhas)
         return render_template("promoter.html", banco=linhas, promoter=linhas2, total=total)

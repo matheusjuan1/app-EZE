@@ -246,6 +246,17 @@
         window.myLine = new Chart(ctx4, config4);
     };
 
+    setTimeout(() => {
+        if(screen.width <= 466){
+            config3.options.scales.xAxes.display = false
+            config4.options.scales.xAxes.display = false
+            var ctx3 = document.getElementById('grafico3').getContext('2d');
+            window.myLine = new Chart(ctx3, config3);
+            var ctx4 = document.getElementById('grafico4').getContext('2d');
+            window.myLine = new Chart(ctx4, config4);
+        }
+    }, 500);
+
 </script>
 
 {% endblock %}

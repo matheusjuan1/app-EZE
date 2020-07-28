@@ -11,6 +11,17 @@ body{
     scroll-behavior: smooth;
 }
 
+.p-5 {
+    padding: 1rem!important;
+}
+
+.table{
+    height: auto;
+    width: 100%;
+    overflow-x: scroll;
+    background-color: transparent!important;
+}
+
 td h1 {
     margin-left: 0;
 }

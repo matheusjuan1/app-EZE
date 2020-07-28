@@ -1,0 +1,11 @@
+.p-5 {
+    padding: 0rem!important;
+}
+
+@media (max-width: 749px){
+    .adicionar {
+        width: 60%;
+        text-align: left;
+        margin-left: 20%;
+    }
+}

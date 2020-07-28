@@ -2,6 +2,7 @@
 
 {% block css %}
     <link rel="stylesheet" href="../static/organizador.css">
+    <link rel="stylesheet" href="../static/promoter.css">
 {% endblock %}
 
 
@@ -35,7 +36,7 @@
                 <div class="dropdown-menu">
                     <h6 class="dropdown-header">{{i["nomeCliente"]}}</h6>
                     <div class="dropdown-divider"></div>
-                    <form action="/promoter" method="POST" class="px-4 py-3">
+                    <form action="/promoter" method="POST" id="form{{i['idLista']}}" class="px-4 py-3">
                         <div class="form-group">
                             <label for="nome">Nome</label>
                             <input required type="text" name="nome" class="form-control" id="nome" placeholder="Novo Nome">
@@ -45,7 +46,7 @@
                             <input required value="M" type="radio" name="sexo" id="m"> <label for="m">Masculino</label><br>
                             <input value="F" type="radio" name="sexo" id="f"> <label for="f">Feminino</label>
                         </div>
-                        <button value="{{i['idLista']}}" name="editar" type="submit"
+                        <button value="{{i['idLista']}}" name="editar" id="btn{{i['idLista']}}" onclick="verificar({{i['idLista']}})"
                             class="btn btn-danger">Editar</button>
                     </form>
                 </div>
@@ -87,6 +88,17 @@
         <button name="adicionar" type="submit" class="btn btn-danger">Adicionar</button>
     </form>
 </div>
+
+<script>
+
+function verificar(entrada){
+    let form = "form" + entrada;
+    let btn = "btn" + entrada;
+    document.getElementById(btn).setAttribute("disabled", "disabled")
+    document.getElementById(form).submit();
+}
+
+</script>
 {% endblock %}
 
 

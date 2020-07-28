@@ -160,6 +160,9 @@ footer i:hover {
 
 
 @media (max-width: 767px) {
+    .navbar-nav{
+        text-align: left;
+    }
     #logoeze2 {
         display: block;
         margin-top: 0.7vmin;
