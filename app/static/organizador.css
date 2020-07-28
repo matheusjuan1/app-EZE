@@ -124,8 +124,28 @@ td h1 {
     transition: 1s;
 }
 
-@media (max-width: 767px){
+@media(max-width: 1200px){
+    .promoters {
+        width: 70%;
+        margin-left: 15%;
+    }
+}
+
+@media(max-width: 990px){
+    .promoters {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .promoter {
+        width: 60vmin;
+        height: auto;
+        margin: 2vmin 3vmin;
+    }
+}
+
+/* @media (max-width: 767px){
     .promoter {
         margin-left: 27.5%;
     }
-}
+} */
