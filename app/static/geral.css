@@ -13,6 +13,16 @@ canvas {
     border-radius: 2vmin;
 }
 
+hr {
+    border-color: rgba(255, 255, 255, 0.3);
+    margin-top: 4vmin;
+}
+
+h3 {
+    font-size: 3.5vmin;
+    margin-top: 3vmin;
+}
+
 h1 {
     font-size: 5vmin;
 }
@@ -23,6 +33,7 @@ h1 {
 
 .cima  {
     margin-top: 4vmin;
+    width: 100%;
 }
 
 .meio {

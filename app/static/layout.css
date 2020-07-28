@@ -25,11 +25,6 @@ ul {
     padding: 0px;
 }
 
-@font-face {
-    font-family: "Brush";
-    src: url(../fonts/brush-script-mt-italic.ttf);
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
 nav {
@@ -38,6 +33,7 @@ nav {
     width: 98%;
     background-image: linear-gradient(180deg, red, black, black, black, black, black, black, black, red);
     z-index: 1;
+    text-align: center;
     padding-bottom: 1.5vmin;
     left: 1%;
     position: fixed!important;
@@ -62,10 +58,9 @@ nav {
 }
 
 #navbar ul {
-    width: 811px;
     padding-top: 0.4vmin;
-    margin: auto
 }
+
 
 nav a {
     display: inline-block;
@@ -101,21 +96,25 @@ nav img {
 }
 
 #navbar .esquerda {
-    float: left;
-    margin-right: 5%;
+    margin-right: 4%;
     margin-top: 0.6vmin;
     font-size: 4vmin;
 }
 
 #navbar .direita {
-    float: right;
-    margin-left: 5%;
+    margin-left: 4%;
     margin-top: 0.6vmin;
     font-size: 4vmin;
 }
 
+.navbar-nav {
+    overflow: hidden;
+    width: 100%;
+    justify-content: center;
+} 
+
 .headerL {
-    width: 92%;
+    width: 100%;
     margin: auto;
 }
 
@@ -144,7 +143,7 @@ footer i {
 }
 
 .mainp {
-    margin-top: 70px;
+    margin-top: 11.5vmin;
 }
 
 footer i:hover {
@@ -155,7 +154,7 @@ footer i:hover {
 /* Responsividade_________________________________________________________________________________________________________________________ */
 @media (max-width: 856px){
     #navbar .esquerda,#navbar .direita{
-        font-size: 3.6vmin
+        font-size: 3.4vmin
     }
 }
 
@@ -183,7 +182,6 @@ footer i:hover {
         font-size: 4vmin;
     }
     #navbar ul {
-        width: 90%;
         padding-top: 0.6%;
         margin-left: 0;
         padding-bottom: 1.5%;

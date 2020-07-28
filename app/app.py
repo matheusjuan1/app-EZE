@@ -10,7 +10,7 @@ import datetime
 from datetime import date
 import json
 
-from helpers import apology, login_required
+from helpers import apology, login_required, login_requiredPro
 
 # Configure application
 app = Flask(__name__)
@@ -299,7 +299,7 @@ def login_promoter():
 
 
 @app.route("/promoter", methods=["GET", "POST"])
-@login_required
+@login_requiredPro
 def promoter():
     if request.method == "GET":
         db = sqlite3.connect("eze.db")
@@ -327,11 +327,12 @@ def promoter():
         linhas = eze.fetchall()
         db.commit()
         eze.close()
+        flash("Nome alterado com sucesso!")
         return redirect("/promoter")
 
 
 @app.route("/add_cliente", methods=["POST"])
-@login_required
+@login_requiredPro
 def add_cliente():
     nome = request.form["nome"]
     sexo = request.form["sexo"]
@@ -344,10 +345,11 @@ def add_cliente():
         eze.execute(
             f"INSERT INTO lista (nomeCliente, sexo, Lote, dataCompra, fk_promoter) VALUES (?,?,?,?, '{idPro}')", (nome, sexo, lote, data))
         db.commit()
+        flash("Adicionado com sucesso!")
         return redirect("/promoter")
 
 @app.route("/perfil_promoter", methods=["GET", "POST"])
-@login_required
+@login_requiredPro
 def perfil_cliente():
     if request.method == "GET":
         db = sqlite3.connect("eze.db")
@@ -383,12 +385,15 @@ def perfil_cliente():
         if 'nome' in request.form:
             nome = request.form["nome"]
             eze.execute(f"UPDATE promoters SET nome = '{nome}' WHERE id = ?", [session["user_id"]])
+            flash("Nome alterado com sucesso!")
         elif 'urlPerfil' in request.form:
             perfil = request.form["urlPerfil"]
             eze.execute(f"UPDATE promoters SET urlIMG = '{perfil}' WHERE id = ?", [session["user_id"]])
+            flash("Foto de perfil alterada com sucesso!")
         else:
             capa = request.form["urlCapa"]
             eze.execute(f"UPDATE promoters SET urlcapa = '{capa}' WHERE id = ?", [session["user_id"]])
+            flash("Foto de capa alterada com sucesso!")
         eze.fetchall()
         db.commit()
         eze.close()

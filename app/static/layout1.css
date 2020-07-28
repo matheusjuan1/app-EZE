@@ -43,6 +43,17 @@ footer {
 
 main {
     text-align: center;
+    overflow-x: auto;
+}
+
+table {
+    width: 100vmin;
+    overflow: scroll;
+    display: table;
+}
+
+.nav-link {
+    cursor: pointer;
 }
 
 .nav-link:hover {
@@ -54,6 +65,7 @@ main {
     border: none;
     outline: none!important;
     font-size: 27px;
+    width: 5%;
 }
 
 .navbar-toggler:hover {
@@ -71,6 +83,6 @@ main {
         display: block;
     }
     .navbar button{
-        width: 20%;
+        width: 10%;
     }
 }

@@ -26,14 +26,14 @@
 </head>
 
 <body>
-    <nav id="navbarbg" class="navbar navbar-expand-md navbar-light">
+    <nav id="navbarbg" class="navbar navbar-expand-md ">
         <a href="/"><img id="logoeze2" src="../static/img/logo.png" alt=""></a>
         <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
             id="buttonnav" data-target="#navbar" data-toggle="collapse" type="button" onclick="diminuir()">
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav mr-auto mt-2">
+            <ul class="navbar-nav">
                 <li class="nav-item esquerda"><a href="/edicoes">Edições</a></li>
                 <li class="nav-item esquerda"><a href="/comprar">Comprar</a></li>
                 <a href="/"><img id="logoeze" src="../static/img/logo.png"></a>
@@ -45,7 +45,7 @@
 
     {% block index %}
 
-    <main class="container p-5">
+    <main class="container p-4">
         <div class="mainp">
             {% if get_flashed_messages() %}
             <div class="headerL">

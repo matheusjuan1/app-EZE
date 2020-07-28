@@ -38,11 +38,11 @@
                     <form action="/promoter" method="POST" class="px-4 py-3">
                         <div class="form-group">
                             <label for="nome">Nome</label>
-                            <input type="text" name="nome" class="form-control" id="nome" placeholder="Novo Nome">
+                            <input required type="text" name="nome" class="form-control" id="nome" placeholder="Novo Nome">
                         </div>
                         <div class="form-group">
                             <label for="">Sexo</label><br>
-                            <input value="M" type="radio" name="sexo" id="m"> <label for="m">Masculino</label><br>
+                            <input required value="M" type="radio" name="sexo" id="m"> <label for="m">Masculino</label><br>
                             <input value="F" type="radio" name="sexo" id="f"> <label for="f">Feminino</label>
                         </div>
                         <button value="{{i['idLista']}}" name="editar" type="submit"
@@ -69,16 +69,16 @@
     <h1>Adicionar Nome:</h1>
     <form action="/add_cliente" method="POST">
         <div class="form-group">
-            <input name="nome" type="text" class="form-control" id="" placeholder="Nome">
+            <input required name="nome" type="text" class="form-control" id="" placeholder="Nome">
         </div>
         <div class="form-group">
             <label for="">Sexo</label><br>
-            <input value="M" type="radio" name="sexo" id="m"> <label for="m">Masculino</label><br>
+            <input required value="M" type="radio" name="sexo" id="m"> <label for="m">Masculino</label><br>
             <input value="F" type="radio" name="sexo" id="f"> <label for="f">Feminino</label>
         </div>
         <div class="form-group">
             <label for="">Lote</label>
-            <select name="lote" class="form-control" id="">
+            <select required name="lote" class="form-control" id="">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
